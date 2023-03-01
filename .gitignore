@@ -1,0 +1,6 @@
+# En este archivo siéntase libres de copiar y pegar todo lo necesario para
+# ignorar archivos innecesarios según los frameworks.
+# Si quieres agregar una instrucción al gitignore, sólo agrégala hasta el
+# el final de este archivo:
+
+*.exe
