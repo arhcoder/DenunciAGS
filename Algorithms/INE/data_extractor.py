@@ -30,6 +30,7 @@ def dataFromCURP(xcurp: str):
     '''
 
     from curp import CURP
+    import json
 
     # Structure of the data:
     data = {
@@ -57,13 +58,24 @@ def dataFromCURP(xcurp: str):
     try:
         curpobj = CURP(xcurp)
         # print(f"Fecha de nacimiento: {curpobj.fecha_nacimiento}")
-        print(f"Sexo: {curpobj.sexo}")
+        # print(f"Sexo: {curpobj.sexo}")
         # print(f"Entidad: {curpobj.entidad}")
         # print(f"Entidad: {curpobj.entidad_iso}")
         # print(f"CURP: {curpobj.curp}")
         # print(f"Fecha de nacimiento: {curpobj._birth_date}")
         # print(f"Lugar de nacimiento: {curpobj._birth_place}")
         # print(f"JSON: {curpobj.json()}")
+
+        # Tries to get personal information about the guy:
+        names = False
+        first_last_name = False
+        second_last_name = False
+        with open("../Keys/curp.json") as file:
+            token = str(json.load(file)["token"])
+        
+        # PARA OBTENER LOS DATOS DEL NOMBRE Y EL DOMICILIO:
+        #   * PARA EL NOMBRE
+        
 
         data["curp"] = curpobj.curp
         data["name"]["names"] = "A B"
@@ -81,6 +93,6 @@ def dataFromCURP(xcurp: str):
         return data
     
     except:
-        return {"e": "No sé qué pasó, pero pasó un error :D"}
+        return {"error": "No sé qué pasó, pero pasó un error :D"}
 
 print(dataFromCURP("DOFC020612HASNLRA8"))
