@@ -1,5 +1,5 @@
 
-def dataFromCURP(curp: str):
+def dataFromCURP(xcurp: str):
 
     '''
         Recieves a CURP [str]
@@ -29,4 +29,58 @@ def dataFromCURP(curp: str):
         }
     '''
 
-    pass
+    from curp import CURP
+
+    # Structure of the data:
+    data = {
+        "curp": "string",
+        "name":
+        {
+            "names": "string",
+            "first_last_name": "string",
+            "second_last_name": "string"
+        },
+        "sex": "string ISO/IEC 5218",
+        "birthdate": "string datatime.date",
+        "federative_entity": "string ISO/IEC 5218",
+        "domicile":
+        {
+            "postal_code": "string",
+            "cologne": "string",
+            "street": "string",
+            "exterior_number": "int",
+            "internal_number": "string"
+        }
+    }
+
+    # Instanciate an object ob curp from CURPSuite:
+    try:
+        curpobj = CURP(xcurp)
+        # print(f"Fecha de nacimiento: {curpobj.fecha_nacimiento}")
+        print(f"Sexo: {curpobj.sexo}")
+        # print(f"Entidad: {curpobj.entidad}")
+        # print(f"Entidad: {curpobj.entidad_iso}")
+        # print(f"CURP: {curpobj.curp}")
+        # print(f"Fecha de nacimiento: {curpobj._birth_date}")
+        # print(f"Lugar de nacimiento: {curpobj._birth_place}")
+        # print(f"JSON: {curpobj.json()}")
+
+        data["curp"] = curpobj.curp
+        data["name"]["names"] = "A B"
+        data["name"]["first_last_name"] = "C"
+        data["name"]["second_last_name"] = "D"
+        data["sex"] = "H" if curpobj.sexo.HOMBRE else "M"
+        data["birthdate"] = curpobj.fecha_nacimiento.strftime("%d/%m/%Y")
+        data["federative_entity"] = curpobj.entidad_iso
+        data["domicile"]["postal_code"] = "X"
+        data["domicile"]["cologne"] = "X"
+        data["domicile"]["street"] = "X"
+        data["domicile"]["exterior_number"] = "X"
+        data["domicile"]["internal_number"] = "X"
+        
+        return data
+    
+    except:
+        return {"e": "No sé qué pasó, pero pasó un error :D"}
+
+print(dataFromCURP("DOFC020612HASNLRA8"))

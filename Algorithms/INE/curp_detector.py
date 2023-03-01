@@ -12,8 +12,8 @@ def isThisACURP(text: str):
 
     from curp import CURP
     try:
-        curpstr = CURP(text)
-        if curpstr:
+        curpobj = CURP(text)
+        if curpobj:
             return text
     except:
         return False
