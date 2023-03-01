@@ -1,3 +1,4 @@
+import 'package:denuncias/screens/denuncia3.dart';
 import 'package:flutter/material.dart';
 import 'package:denuncias/widgets/subtitlesags.dart';
 import 'package:flutter/cupertino.dart';
@@ -55,7 +56,7 @@ class Denuncia2 extends StatelessWidget {
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             primary: Colors.indigo.withOpacity(0.2)),
-                        onPressed: () => {},
+                        onPressed: () {},
                         child: Icon(
                           Icons.upload,
                           size: 180,
@@ -70,7 +71,11 @@ class Denuncia2 extends StatelessWidget {
                   padding: EdgeInsets.only(left: 20, right: 20),
                   child: ElevatedButton(
                     //ACCIÓN AL PRESIONAR
-                    onPressed: () => {},
+                    //AQUÍ SE VAN A TENER QUE HACER TODOS LOS JALES DE RECONOCIMIENTO DE LOS DATOS DE LA INE
+                    onPressed: () => {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Denuncia3()))
+                    },
                     child: const Text("CONTINUAR"),
                   ),
                 ),
