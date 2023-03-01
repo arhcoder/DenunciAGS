@@ -1,5 +1,5 @@
 """
-WSGI config for denunciags project.
+WSGI config for denuncias project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'denunciags.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'denuncias.settings')
 
 application = get_wsgi_application()
