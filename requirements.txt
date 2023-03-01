@@ -1,0 +1,7 @@
+# Hay que instalar la siguientes librerías de Python:
+
+* Google Cloud Vision:
+    python -m pip install google-cloud-vision
+
+* CURPSuite:
+    python -m pip install CURPSuite
