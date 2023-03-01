@@ -79,10 +79,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'hackathon',
-        'HOST': '127.0.0.1',
+        'HOST': 'basedatosdenunciags.mysql.database.azure.com',
         'PORT': '3306',
-        'USER': 'root',
-        'PASSWORD': '12345',
+        'USER': 'admindb',
+        'PASSWORD': 'patasconnutella2015@',
     }
 }
 
