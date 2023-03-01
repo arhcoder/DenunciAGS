@@ -29,5 +29,5 @@ class domicilio(models.Model):
     codigoPostal = models.TextField(max_length=45)
     colonia = models.TextField(max_length=45)
     calle = models.TextField(max_length=45)
-    numExterior = models.IntegerField(max_length=45)
+    numExterior = models.IntegerField()
     numInterior = models.TextField(max_length=45, null=True)
