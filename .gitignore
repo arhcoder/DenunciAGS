@@ -3,4 +3,8 @@
 # Si quieres agregar una instrucción al gitignore, sólo agrégala hasta el
 # el final de este archivo:
 
+# Todos los archivos .exe:
 *.exe
+
+# Carpeta en donde yo (ALEX) voy a guardar ciertas claves privadas:
+Algorithms/Keys
