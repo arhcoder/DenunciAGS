@@ -54,7 +54,7 @@ Aplicación multiplataforma adaptable para:
 
 **Backend:**
 * Iván Ibarra **[@TunasFC](https://github.com/TunasFC "@TunasFC")**
-* Adrián Zermeño **[@dixtinox](https://github.com/TunasFC "@dixtinox")**
+* Adrián Zermeño **[@dixtinox](https://github.com/dixtinox "@dixtinox")**
 
 **Algorithms:**
 * Emilio Luna **[@emilioenlaluna](https://github.com/emilioenlaluna "@emilioenlaluna")**
