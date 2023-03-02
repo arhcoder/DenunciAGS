@@ -24,10 +24,10 @@ class Denuncia2 extends StatefulWidget {
 }
 
 class _Denuncia2 extends State<Denuncia2> {
-  File? _imageFile1;
-  File? _imageFile2;
   Uint8List webImageF = Uint8List(8);
-  Uint8List webImageB = Uint8List(8);
+  Uint8List webImageT = Uint8List(8);
+  bool _picker1 = false;
+  bool _picker2 = false;
 
   @override
   Widget build(BuildContext context) {
@@ -64,16 +64,14 @@ class _Denuncia2 extends State<Denuncia2> {
                         style: ElevatedButton.styleFrom(
                             primary: Colors.indigo.withOpacity(0.2)),
                         onPressed: () {
-                          _pickImage();
+                          _pickImage(1);
                         },
-                        child: _imageFile1 == null
+                        child: _picker1
                             ? Icon(
                                 Icons.upload,
                                 size: 180,
                               )
-                            : kIsWeb
-                                ? Image.memory(webImageF, fit: BoxFit.fill)
-                                : Image.file(_imageFile1!, fit: BoxFit.fill)),
+                            : Image.memory(webImageF, fit: BoxFit.fill)),
                   ),
                   padding: EdgeInsets.only(left: 20, right: 20),
                 ),
@@ -93,16 +91,14 @@ class _Denuncia2 extends State<Denuncia2> {
                         style: ElevatedButton.styleFrom(
                             primary: Colors.indigo.withOpacity(0.2)),
                         onPressed: () {
-                          _pickImage();
+                          _pickImage(2);
                         },
-                        child: _imageFile2 == null
+                        child: _picker2
                             ? Icon(
                                 Icons.upload,
                                 size: 180,
                               )
-                            : kIsWeb
-                                ? Image.memory(webImageB, fit: BoxFit.fill)
-                                : Image.file(_imageFile2!, fit: BoxFit.fill)),
+                            : Image.memory(webImageT, fit: BoxFit.fill)),
                   ),
                   padding: EdgeInsets.only(left: 20, right: 20),
                 ),
@@ -135,45 +131,28 @@ class _Denuncia2 extends State<Denuncia2> {
     );
   }
 
-  //Recuperar imagenes
-  Future<void> _pickImage() async {
-    if (!kIsWeb) {
-      final ImagePicker _picker = ImagePicker();
+  //Recuperar imagenes 0709
+  Future<void> _pickImage(int picker) async {
+    final ImagePicker _picker = ImagePicker();
       XFile? image = await _picker.pickImage(source: ImageSource.gallery);
-
-      if (image != null) {
-        var selected = File(image.path);
-        setState(() {
-          if (_imageFile1 != null && _imageFile1!.lengthSync() > 0) {
-            _imageFile2 = selected;
-          } else {
-            _imageFile1 = selected;
-          }
-        });
-      } else {
-        print("No hay imagen seleccionada");
+      if(!kIsWeb) {
+        XFile? image = await _picker.pickImage(source: ImageSource.camera);
       }
-    } else if (kIsWeb) {
-      final ImagePicker _picker = ImagePicker();
-      XFile? image = await _picker.pickImage(source: ImageSource.gallery);
-
       if (image != null) {
         var f = await image.readAsBytes();
         setState(() {
-          if (!webImageF.every((byte) => byte == 0)) {
-            webImageB = f;
-            _imageFile2 = File('a');
-          } else {
-            webImageF = f;
-            _imageFile1 = File('a');
+          switch(picker) {
+            case 1: webImageF = f; _picker1 = true; break;
+            case 2: webImageT = f; _picker2 = true; break;
           }
         });
       } else {
+        switch(picker) {
+            case 1: _picker1 = false; break;
+            case 2: _picker2 = false; break;
+          }
         print("No hay imagen seleccionada");
       }
-    } else {
-      print("Algo anda mal...");
-    }
   }
 
   //Mandar imagenes
@@ -181,39 +160,16 @@ class _Denuncia2 extends State<Denuncia2> {
     String url =
         'https://emilioenlaluna-reimagined-space-59q6wpv4prqh4jrj-8000.preview.app.github.dev/algoritms/send_ine/';
     http.Response respuesta;
-    if (kIsWeb) {
-      // Convierte la lista de bytes en un objeto String
-      String imagenCodificadaF = base64Encode(webImageF);
-      String imagenCodificadaT = base64Encode(webImageB);
-
-      // Define el cuerpo de la petición POST
-      Map<String, String> cuerpo = {
-        'imagenF': imagenCodificadaF,
-        'imagenT': imagenCodificadaT
-      };
-
-      // Envía la petición POST
-      respuesta = await http.post(Uri.parse(url), body: json.encode(cuerpo));
-    } else {
-      // Crea un objeto `http.MultipartRequest` para manejar la petición POST
-      http.MultipartRequest request =
-          http.MultipartRequest('POST', Uri.parse(url));
-
-      if (_imageFile1?.path != null) {
-        http.MultipartFile archivo1Part =
-            await http.MultipartFile.fromPath('imagenF', _imageFile1!.path);
-        request.files.add(archivo1Part);
-      }
-
-      if (_imageFile2?.path != null) {
-        http.MultipartFile archivo2Part =
-            await http.MultipartFile.fromPath('imagenT', _imageFile2!.path);
-        request.files.add(archivo2Part);
-      }
-
-      // Envía la petición POST y espera la respuesta
-      respuesta = await http.Response.fromStream(await request.send());
-    }
+    // Convierte la lista de bytes en un objeto String
+    String imagenCodificadaF = base64Encode(webImageF);
+    String imagenCodificadaT = base64Encode(webImageT);
+    // Define el cuerpo de la petición POST
+    Map<String, String> cuerpo = {
+      'imagenF': imagenCodificadaF,
+      'imagenT': imagenCodificadaT
+    };
+    
+    respuesta = await http.post(Uri.parse(url), body: json.encode(cuerpo));
 
     // Verifica el código de estado de la respuesta
     if (respuesta.statusCode == 200) {
