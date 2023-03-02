@@ -16,7 +16,7 @@ def textFrom(imageURL: str):
     from google.oauth2.service_account import Credentials
 
     # Set the Google Vision API key:
-    with open("../Keys/vision.json") as file:
+    with open("./Keys/vision.json") as file:
         keys = json.load(file)
     credentials = Credentials.from_service_account_info(keys)
 
