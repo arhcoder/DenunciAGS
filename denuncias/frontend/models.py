@@ -4,6 +4,9 @@ from django.db import models
 class modeloPrueba(models.Model):
     title = models.CharField(max_length = 30)
     description = models.TextField()
+    def __str__(self): 
+        return self.title    
+    
 
 class denuncia(models.Model):
     numSeguimiento = models.CharField(max_length=15, primary_key=True)
