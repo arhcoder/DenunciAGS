@@ -1,3 +1,5 @@
+import 'dart:ui' as ui;
+
 class Denuncia {
   //DENUNCIANTE
   var curp1;
@@ -30,8 +32,8 @@ class Denuncia {
   var entre_calle_hechos2;
   var ubicacion_actual_hechos;
   var narrativa_denuncia;
-  List<String>? testigos = [];
-  List<String>? imagepath = [];
+  var testigos;
+  ui.Image? image;
   bool anonima;
   String? telefono_denunciante;
   String? correo_denunciante;
@@ -66,7 +68,7 @@ class Denuncia {
       this.ubicacion_actual_hechos,
       this.narrativa_denuncia,
       this.testigos,
-      this.imagepath,
+      this.image,
       required this.anonima,
       this.telefono_denunciante,
       this.correo_denunciante});
@@ -81,10 +83,10 @@ class Denuncia {
       ubicacion_actual_hechos,
       narrativa_denuncia,
       testigos,
-      imagepath,
       anonima,
       telefono_denunciante,
-      correo_denunciante) {
+      correo_denunciante,
+      image) {
     this.tipo = tipo;
     this.descripciontipo = descripciontipo;
     this.fecha = fecha;
@@ -95,7 +97,7 @@ class Denuncia {
     this.ubicacion_actual_hechos = ubicacion_actual_hechos;
     this.narrativa_denuncia = narrativa_denuncia;
     this.testigos = testigos;
-    this.imagepath = imagepath;
+    this.image = image;
     this.anonima = anonima;
     this.telefono_denunciante = telefono_denunciante;
     this.correo_denunciante = correo_denunciante;

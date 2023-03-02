@@ -1,11 +1,13 @@
-import '/screens/denuncia2.dart';
-import '/widgets/subtitlesags.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:denunciasapp/models/denuncia.dart';
 import 'package:flutter/material.dart';
-import '../widgets/widgets.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+import '../widgets/custom_form_widget1.dart';
+import '../widgets/subtitlesags.dart';
+import '../widgets/titlesags.dart';
+
+class Denuncia5 extends StatelessWidget {
+  const Denuncia5({Key? key}) : super(key: key);
+//AQUÍ TENEMOS QUE HACER EL REQUEST DEL NUMERO DE SEGUIMIENTO
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,8 +35,9 @@ class HomeScreen extends StatelessWidget {
               Container(
                 child: ElevatedButton(
                     onPressed: () {
+                      /*
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Denuncia2()));
+                          MaterialPageRoute(builder: (context) => Consulta()),);*/
                     },
                     child: Text("INICIAR")),
               ),

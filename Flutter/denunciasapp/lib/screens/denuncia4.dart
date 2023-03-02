@@ -1,4 +1,6 @@
 import 'package:denunciasapp/models/denuncia.dart';
+import 'dart:ui' as ui;
+import 'package:denunciasapp/widgets/MySignature.dart';
 import 'package:denunciasapp/widgets/select_menu.dart';
 import 'package:denunciasapp/widgets/text_box.dart';
 
@@ -7,27 +9,26 @@ import '../screens/citzen_report.dart';
 import '/widgets/custom_textformfield1.dart';
 import '/widgets/subtitlesags.dart';
 import 'package:flutter/material.dart';
-
-import 'package:flutter/material.dart';
-
-import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'dart:io';
+import 'package:http/http.dart' as http;
+import 'denuncia5.dart';
 
 class Denuncia4 extends StatefulWidget {
-  Denuncia reporte;
+  Denuncia reporte = new Denuncia(anonima: false);
+
   Denuncia4({required this.reporte});
   @override
   _Denuncia4State createState() => _Denuncia4State();
 }
 
 class _Denuncia4State extends State<Denuncia4> {
+  final signatureKey = GlobalKey<SignatureState>();
   bool _isChecked = false;
   List<Widget> _textFields = [];
   String? _selectedOption1;
   String? _selectedOption2;
   List<String> _options2 = [];
-  late TextEditingController controllerTipo = new TextEditingController();
-  late TextEditingController controllerDescripcionTipo =
-      new TextEditingController();
   late TextEditingController controllerFecha = new TextEditingController();
   late TextEditingController controllerHora = new TextEditingController();
   late TextEditingController controllerCalleHechos =
@@ -88,7 +89,7 @@ class _Denuncia4State extends State<Denuncia4> {
     return Scaffold(
       appBar: AppBar(
         title: Text("CONFIRMACIÓN DE DATOS"),
-        backgroundColor: Color.fromRGBO(41, 51, 115, 1),
+        backgroundColor: Color.fromARGB(255, 44, 41, 115),
         leading: new IconButton(
           icon: new Icon(Icons.arrow_back),
           onPressed: () => Navigator.of(context).pop(),
@@ -172,9 +173,8 @@ class _Denuncia4State extends State<Denuncia4> {
               SubTitlesAgs(texto: "TESTIGOS"),
               SizedBox(height: 100.0),
               TextBox(
-                  controller: controllerNarrativaDenuncia,
+                  controller: controllerTestigos,
                   label: "INGRESA LOS NOMBRES DE LOS TESTIGOS"),
-
               Row(
                 children: [
                   Checkbox(
@@ -199,25 +199,49 @@ class _Denuncia4State extends State<Denuncia4> {
                 onlyText: !_isChecked,
               ),
               SubTitlesAgs(texto: "FIRMA"),
-              //INSERTAR WIDGET DE LA FIRMA
-
+              Card(
+                elevation: 4.0,
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 200.0,
+                  child: Signature(
+                      key: signatureKey,
+                      cardSize: Size(MediaQuery.of(context).size.width, 200.0)),
+                ),
+              ),
               ElevatedButton(
-                onPressed: () {
-                  widget.reporte.setSecondDatas(
-                      controllerTipo.text,
-                      controllerDescripcionTipo.text,
-                      controllerFecha.text,
-                      controllerHora.text,
-                      controllerCalleHechos.text,
-                      controllerEntreCalleHechos1.text,
-                      controllerEntreCalleHechos2.text,
-                      controllerUbicacionActualHechos.text,
-                      controllerNarrativaDenuncia.text,
-                      controllerTestigos.text,
-                      controllerImagePath.text,
-                      controllerAnonima.value,
-                      controllerTelefonoDenunciante.text,
-                      controllerCorreoDenunciante.text);
+                onPressed: () async {
+                  if (_selectedOption1 != null &&
+                      controllerFecha.text != "" &&
+                      controllerHora.text != "" &&
+                      controllerCalleHechos.text != "" &&
+                      controllerUbicacionActualHechos.text != "" &&
+                      controllerTestigos != "") {
+                    ui.Image? image =
+                        await signatureKey.currentState?.getImage();
+                    print("Sí se pudo");
+                    widget.reporte.setSecondDatas(
+                        _selectedOption1,
+                        _selectedOption2,
+                        controllerFecha.text,
+                        controllerHora.text,
+                        controllerCalleHechos.text,
+                        controllerEntreCalleHechos1.text,
+                        controllerEntreCalleHechos2.text,
+                        controllerUbicacionActualHechos.text,
+                        controllerNarrativaDenuncia.text,
+                        controllerTestigos.text,
+                        _isChecked,
+                        controllerTelefonoDenunciante.text,
+                        controllerCorreoDenunciante.text,
+                        image);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Denuncia5(),
+                      ),
+                    );
+                  }
                 },
                 child: Text('CONTINUAR'),
               ),
@@ -227,4 +251,13 @@ class _Denuncia4State extends State<Denuncia4> {
       ),
     );
   }
+
+  Future<void> sendFormData() async {
+    var url = Uri.parse('http://example.com/api/form-data');
+    var request = http.MultipartRequest('POST', url);
+    //var imageBytes = await widget.reporte.image!.readAsBytes();
+    Map<String, dynamic> datos = {"curp": widget.reporte.curp1};
+    
+  }
 }
+

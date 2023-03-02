@@ -47,12 +47,21 @@ class DenunciaListSerializer(serializers.ModelSerializer):
         fields = [
             'numSeguimiento',
             'apellidoPaterno',
-            'apellidoPaterno',
+            'apellidoMaterno',
             'curp',
             'estatus',
             'respuesta',
             'descripcion',
             'absolute_url',
+            'accion_denuncia',
+            'fecha_hechos',
+            'hora_hechos',
+            'lugar_hechos',
+            'testigos',
+            'denuncia_anonima',
+            'telefono_denunciante',
+            'correo_denunciante',
+            'firma'
         ]
     def get_absolute_url(self, obj):
         return reverse('denuncia_detail', args=(obj.pk,))
@@ -64,12 +73,21 @@ class DenunciaDetailSerializer(serializers.ModelSerializer):
         fields = [
             'numSeguimiento',
             'apellidoPaterno',
-            'apellidoPaterno',
+            'apellidoMaterno',
             'curp',
             'estatus',
             'respuesta',
             'descripcion',
-            'denuncia_images'
+            'denuncia_images',
+            'accion_denuncia',
+            'fecha_hechos',
+            'hora_hechos',
+            'lugar_hechos',
+            'testigos',
+            'denuncia_anonima',
+            'telefono_denunciante',
+            'correo_denunciante',
+            'firma'
         ]
 
 #

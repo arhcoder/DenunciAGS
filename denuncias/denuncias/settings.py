@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'frontend',
     'rest_framework',
-    'algoritmos'
+    'algoritmos',
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
@@ -50,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+     "corsheaders.middleware.CorsMiddleware",
 ]
 
 ROOT_URLCONF = 'denuncias.urls'
@@ -134,3 +136,14 @@ CSRF_TRUSTED_ORIGINS=["https://emilioenlaluna-reimagined-space-59q6wpv4prqh4jrj-
 SESSION_COOKIE_SECURE = False
 CSRF_COOKIE_SECURE = False
 SECURE_SSL_REDIRECT = False
+
+CORS_ALLOW_ALL_ORIGINS=True
+
+CORS_ALLOW_METHODS = [
+'DELETE',
+'GET',
+'OPTIONS',
+'PATCH',
+'POST',
+'PUT',
+]

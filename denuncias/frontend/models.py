@@ -1,5 +1,9 @@
 from django.db import models
-from tracking_code import get_tracking_code
+from .tracking_code import get_tracking_code
+from django.dispatch import receiver
+from django.db.models.signals import *
+
+from .tracking_code import get_tracking_code
 
 class estatusdenuncia(models.Model):
     nombre = models.CharField(max_length=45)
@@ -11,16 +15,12 @@ class estatusdenuncia(models.Model):
 class denuncia(models.Model):
     nombre = models.CharField(max_length=45)
     apellidoPaterno = models.CharField(max_length=45)
-    apellidoPaterno = models.CharField(max_length=45)
+    apellidoMaterno = models.CharField(max_length=45)
     curp = models.CharField(max_length=45)
     estatus=models.ForeignKey(estatusdenuncia, on_delete=models.CASCADE,null=True)
     respuesta = models.CharField(max_length=300,null=True)
     descripcion=models.CharField(max_length=900)
-    def generar(self):
-        numero = get_tracking_code(self.curp)
-        return numero
-    numSeguimiento = generar()
-    
+    numSeguimiento = models.CharField(max_length=20,null=True)
     accion_denuncia=models.CharField(max_length=50,null=True)
     fecha_hechos=models.CharField(max_length=20,null=True)
     hora_hechos=models.CharField(max_length=20,null=True)
@@ -32,6 +32,13 @@ class denuncia(models.Model):
     firma=models.ImageField(upload_to="firmas",null=True)    
     def __str__(self): 
         return self.nombre+self.numSeguimiento
+
+
+@receiver(post_save, sender=denuncia)
+def set_created_at(sender, instance, **kwargs):
+    vcurp=instance.curp
+    seguimiento=get_tracking_code(vcurp)
+    instance.numSeguimiento=seguimiento
 
 
 class lugarDenuncia(models.Model):

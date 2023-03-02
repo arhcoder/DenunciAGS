@@ -75,9 +75,9 @@ class SignatureState extends State<Signature> {
               onPressed: _clean,
               child: const Text("Limpiar"),
               style: ElevatedButton.styleFrom(
-                backgroundColor: ui.Color.fromARGB(0, 231, 15, 156),
+                backgroundColor: ui.Color.fromARGB(255, 217, 24, 149),
               ),
-              ),
+            ),
           ),
         ],
       ),
