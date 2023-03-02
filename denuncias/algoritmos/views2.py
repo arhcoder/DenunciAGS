@@ -2,7 +2,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from nltk.chat.util import Chat, reflections
+from django.views.decorators.csrf import csrf_exempt
 
+@csrf_exempt
 def chatbot_view(request):
     pairs = [
         ['Hola|Hola!|Hola ¿qué tal?', ['Hola, ¿cómo estás?', '¡Hola!']],
@@ -12,7 +14,7 @@ def chatbot_view(request):
     ]
 
     chatbot = Chat(pairs, reflections)
-    response = chatbot.respond(request.GET.get('message'))
+    response = chatbot.respond(request.POST.get('message'))
     return HttpResponse(response)
 
     
