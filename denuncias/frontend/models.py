@@ -10,16 +10,27 @@ class estatusdenuncia(models.Model):
 
 
 class denuncia(models.Model):
-    numSeguimiento = models.CharField(max_length=15)
+    numSeguimiento = models.CharField(max_length=15,null=True)
     nombre = models.CharField(max_length=45)
     apellidoPaterno = models.CharField(max_length=45)
     apellidoPaterno = models.CharField(max_length=45)
     curp = models.CharField(max_length=45)
-    estatus=models.ForeignKey(estatusdenuncia, on_delete=models.CASCADE)
+    estatus=models.ForeignKey(estatusdenuncia, on_delete=models.CASCADE,null=True)
     respuesta = models.CharField(max_length=300,null=True)
     descripcion=models.CharField(max_length=900)
+    
+    accion_denuncia=models.CharField(max_length=50,null=True)
+    fecha_hechos=models.CharField(max_length=20,null=True)
+    hora_hechos=models.CharField(max_length=20,null=True)
+    lugar_hechos=models.CharField(max_length=200,null=True)
+    testigos=models.CharField(max_length=400,null=True)
+    denuncia_anonima=models.BooleanField(default=False,null=True)
+    telefono_denunciante=models.CharField(max_length=20,null=True)
+    correo_denunciante=models.CharField(max_length=200,null=True)
+    firma=models.ImageField(upload_to="firmas",null=True)    
     def __str__(self): 
         return self.nombre+self.numSeguimiento
+
 
 class lugarDenuncia(models.Model):
     denuncia=models.ForeignKey(denuncia, on_delete=models.CASCADE)
