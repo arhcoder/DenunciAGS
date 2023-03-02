@@ -12,7 +12,9 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.feature_extraction.text import CountVectorizer
 import os
 from django.views.decorators.csrf import csrf_exempt
-from .dataSet import data
+from .dataSet import data2
+from nltk.stem import SnowballStemmer
+
 
 import nltk
 from nltk.chat.util import Chat, reflections
@@ -61,7 +63,7 @@ def obtener_recomendaciones(denuncia):
     palabras_clave = [stemmer.stem(t) for t in tokens if t.isalpha()]
     # Buscar las palabras clave en los artículos de la ley
     recomendaciones = {}
-    for articulo, texto in data.items():
+    for articulo, texto in data2.items():
         palabras_clave_encontradas = buscar_palabras_clave(texto, palabras_clave)
         if palabras_clave_encontradas:
             recomendaciones[articulo] = palabras_clave_encontradas
