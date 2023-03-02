@@ -15,6 +15,21 @@ ___
 
 <br>
 
+## 🧠 Desarrolladores
+**Frontend:**
+* Cristian Donato **[@Chisrra](https://github.com/Chisrra "@Chisrra")**
+* Antonio Moreno **[@amrwing](https://github.com/amrwing "@amrwing")**
+
+**Backend:**
+* Iván Ibarra **[@TunasFC](https://github.com/TunasFC "@TunasFC")**
+* Adrián Zermeño **[@dixtinox](https://github.com/dixtinox "@dixtinox")**
+
+**Algorithms:**
+* Emilio Luna **[@emilioenlaluna](https://github.com/emilioenlaluna "@emilioenlaluna")**
+* Alejandro Ramos **[@arhcoder](https://github.com/arhcoder "@arhcoder")**
+
+<br>
+
 ## 🚀 Alcance
 Aplicación multiplataforma adaptable para:
   * Web.
@@ -44,21 +59,8 @@ Aplicación multiplataforma adaptable para:
 
 ## 📡 Servicios utilizados
 * Google-cloud-vision
-
-<br>
-
-## 🧠 Desarrolladores
-**Frontend:**
-* Cristian Donato **[@Chisrra](https://github.com/Chisrra "@Chisrra")**
-* Antonio Moreno **[@amrwing](https://github.com/amrwing "@amrwing")**
-
-**Backend:**
-* Iván Ibarra **[@TunasFC](https://github.com/TunasFC "@TunasFC")**
-* Adrián Zermeño **[@dixtinox](https://github.com/dixtinox "@dixtinox")**
-
-**Algorithms:**
-* Emilio Luna **[@emilioenlaluna](https://github.com/emilioenlaluna "@emilioenlaluna")**
-* Alejandro Ramos **[@arhcoder](https://github.com/arhcoder "@arhcoder")**
+* Python CURPSuite
+* Azure
 
 <br>
 <hr>
