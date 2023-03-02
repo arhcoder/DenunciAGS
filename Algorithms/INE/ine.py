@@ -37,5 +37,5 @@ def getDataFromINE(imagePath: str):
     return data
     
 # Example of use:
-dataOfChisrra = getDataFromINE("Images/Tonio.jpeg")
+dataOfChisrra = getDataFromINE("Images/chisrra.jpeg")
 # print(dataOfChisrra)
