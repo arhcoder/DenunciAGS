@@ -1,4 +1,4 @@
-<a href="https://github.com/arhcoder/DenunciAGS" target="_blank"><img align="left" alt="DenunciAGS" width="200px" src="https://github.com/arhcoder/DenunciAGS/blob/master/Images/DenunciAGS.png?raw=tru"/></a>
+<a href="https://github.com/arhcoder/DenunciAGS" target="_blank"><img align="left" alt="DenunciAGS" width="200px" src="https://github.com/arhcoder/DenunciAGS/blob/master/Images/DenunciAGS.jpeg?raw=true"/></a>
 
 # DenunciAGS 👮‍♂️
 
