@@ -50,7 +50,7 @@ CON DJANGO Y AL FRONTEND EN FLUTTER. AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA :3
                 "street": "CALLE MAR DE LA PLATA",
                 "exterior_number": "224",
                 "internal_number": "NA",
-                "state": "Aguascalientes",
+                "state": "AGS",
                 "municipality": "Asientos"
             }
         }
