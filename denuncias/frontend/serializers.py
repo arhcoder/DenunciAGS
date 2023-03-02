@@ -1,5 +1,7 @@
+from audioop import reverse
 from rest_framework import serializers
 from .models import *
+from django.urls import reverse
 
 #
 # ESTATUS DENUNCIA
@@ -26,7 +28,20 @@ class EstatusDenunciaDetailSerializer(serializers.ModelSerializer):
 # DENUNCIAS 
 #
 
+class ImageSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        fields = ['id',
+            'descripcion',
+            'url',
+            'image'
+            ]
+        model = evidencias
+
+
+
 class DenunciaListSerializer(serializers.ModelSerializer):
+    absolute_url = serializers.SerializerMethodField()
     class Meta:
         model = denuncia
         fields = [
@@ -36,10 +51,14 @@ class DenunciaListSerializer(serializers.ModelSerializer):
             'curp',
             'estatus',
             'respuesta',
-            'descripcion'
+            'descripcion',
+            'absolute_url',
         ]
+    def get_absolute_url(self, obj):
+        return reverse('denuncia_detail', args=(obj.pk,))
 
 class DenunciaDetailSerializer(serializers.ModelSerializer):
+    denuncia_images = ImageSerializer(many=True,required=False)
     class Meta:
         model = denuncia
         fields = [
@@ -49,7 +68,8 @@ class DenunciaDetailSerializer(serializers.ModelSerializer):
             'curp',
             'estatus',
             'respuesta',
-            'descripcion'
+            'descripcion',
+            'denuncia_images'
         ]
 
 #

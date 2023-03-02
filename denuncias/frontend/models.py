@@ -34,11 +34,12 @@ class evidencias(models.Model):
     denuncia=models.ForeignKey(denuncia, on_delete=models.CASCADE)
     descripcion=models.CharField(max_length=200,null=True)
     url = models.TextField(max_length=500)
+    image = models.ImageField(upload_to='fotos',blank=True)
     def __str__(self): 
-        return self.denuncia+self.url
+        return self.descripcion
 
 class domicilio(models.Model):
-    denuncia=models.ForeignKey(denuncia, on_delete=models.CASCADE)
+    denuncia=models.ForeignKey(denuncia, on_delete=models.CASCADE,related_name='denuncia_images',blank=True, null=True)
     municipio = models.TextField(max_length=45)
     codigoPostal = models.TextField(max_length=45)
     colonia = models.TextField(max_length=45)

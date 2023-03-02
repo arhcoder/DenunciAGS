@@ -93,10 +93,11 @@ def clasificar_delito(request):
 
 # Definir los patrones de conversación
 patterns = [
-    (r'Hola|saludos|buen dia|ola|hola|terricola', ['Hola, ¿cómo estás?', '¡Hola!']),
-    (r'¿Cómo estás|como te encuetras|como has estado', ['Estoy bien, gracias. ¿Y tú?', 'Me siento muy bien, gracias']),
-    (r'¿Cuál es tu nombre|como te llamas|apodo', ['Me llamo Chatbot, ¿y tú?', 'Mi nombre es Chatbot']),
-    (r'Adiós|hasta pronto|adios|bye|chao|nos vemos', ['Adiós, ¡que tengas un buen día!', 'Hasta luego']),
+    ['Hola|Hola!|Hola ¿qué tal?', ['Hola, ¿cómo estás?', '¡Hola!']],
+    ['¿Cómo estás?|¿Cómo te sientes?', ['Estoy bien, gracias. ¿Y tú?', 'Me siento muy bien, gracias']],
+    ['¿Cuál es tu nombre?|¿Cómo te llamas?', ['Me llamo Chatbot, ¿y tú?', 'Mi nombre es Chatbot']],
+    ['Adiós|Hasta luego|Chao|Hasta pronto', ['Adiós, ¡que tengas un buen día!', 'Hasta luego']],
+
 ]
 
 # Crear una función para comparar la similitud entre dos textos
