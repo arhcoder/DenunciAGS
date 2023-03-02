@@ -27,7 +27,7 @@ def getDataFromINE(imagePath: str):
             # print(f"{xcurp}")
             break
     if not xcurp:
-        return {"Error": "No se detectó CURP :c"}
+        return {"Error": "No se detectó CURP válida :c"}
     
     # Extrae los datos de la persona, con base
     # a la CURP y los retorna:
@@ -37,5 +37,18 @@ def getDataFromINE(imagePath: str):
     return data
     
 # Example of use:
-dataOfChisrra = getDataFromINE("Images/tonio.jpeg")
-print(dataOfChisrra)
+# dataOfChisrra = getDataFromINE("Images/tonio.jpeg")
+# print(dataOfChisrra)
+
+# Examples:
+ines = [
+    # "Images/ine.png",
+    "Images/aletz.jpeg",
+    "Images/chisrra.jpeg",
+    "Images/tonio.jpeg",
+    "Images/emilio.jpeg"
+]
+
+for ine in ines:
+    print(f"\n{getDataFromINE(ine)}")
+print()
