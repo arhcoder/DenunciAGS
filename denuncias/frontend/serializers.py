@@ -1,38 +1,52 @@
 from rest_framework import serializers
-from .models import modeloPrueba
-from .models import denuncia
+from .models import denuncia,evidencias
 
-class ProjectSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = modeloPrueba
-        fields = ('id','title', 'description')
-        read_only_fields = ('created_at', )
 
 class DenunciaListSerializer(serializers.ModelSerializer):
     class Meta:
         model = denuncia
         fields = [
-            'id',
-            'logo_image',
-            'pizzeria_name',
-            'city',
-            'zip_code'
+            'numSeguimiento',
+            'apellidoPaterno',
+            'apellidoPaterno',
+            'curp',
+            'estatus',
+            'respuesta',
+            'descripcion'
         ]
+
 
 
 class DenunciaDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = denuncia
         fields = [
+            'numSeguimiento',
+            'apellidoPaterno',
+            'apellidoPaterno',
+            'curp',
+            'estatus',
+            'respuesta',
+            'descripcion'
+        ]
+
+
+class EvidenciaListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = evidencias
+        fields = [
             'id',
-            'pizzeria_name',
-            'street',
-            'city',
-            'zip_code',
-            'website',
-            'phone_number',
-            'description',
-            'logo_image',
-            'email',
-            'active'
+            'descripcion',
+            'url'
+        ]
+
+
+
+class EvidenciaDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = evidencias
+        fields = [
+           'id',
+            'descripcion',
+            'url'
         ]

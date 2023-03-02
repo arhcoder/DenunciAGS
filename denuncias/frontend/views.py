@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics
-from .serializers import DenunciaListSerializer,DenunciaDetailSerializer
-from .models import denuncia
+from .serializers import *
+from .models import *
 
 # Create your views here.
 
@@ -31,3 +31,29 @@ class DenunciaRetrieveUpdateAPIView(generics.RetrieveUpdateAPIView):
 class DenunciaDestroyAPIView(generics.DestroyAPIView):
     lookup_field='id'
     queryset=denuncia.objects.all()
+
+#
+# EVIDENCIAS
+#
+
+class EvidenciaListAPIView(generics.ListAPIView):
+    queryset=evidencias.objects.all()
+    serializer_class=EvidenciaListSerializer
+
+class EvidenciaRetrieveAPIView(generics.RetrieveAPIView):
+    lookup_field='id'
+    queryset=evidencias.objects.all()
+    serializer_class=EvidenciaDetailSerializer
+
+class EvidenciaCreateAPIView(generics.CreateAPIView):
+    queryset=evidencias.objects.all()
+    serializer_class=EvidenciaDetailSerializer
+
+class EvidenciaRetrieveUpdateAPIView(generics.RetrieveUpdateAPIView):
+    lookup_field='id'
+    queryset=evidencias.objects.all()
+    serializer_class=EvidenciaDetailSerializer
+
+class EvidenciaDestroyAPIView(generics.DestroyAPIView):
+    lookup_field='id'
+    queryset=evidencias.objects.all()
