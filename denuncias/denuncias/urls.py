@@ -19,6 +19,6 @@ from frontend import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('rest/', include('frontend.urls'))
+    path('', include('frontend.urls'))
 
 ]
