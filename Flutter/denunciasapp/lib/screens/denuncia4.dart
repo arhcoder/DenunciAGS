@@ -1,4 +1,5 @@
 import 'package:denunciasapp/models/denuncia.dart';
+import 'dart:ui' as ui;
 import 'package:denunciasapp/widgets/MySignature.dart';
 import 'package:denunciasapp/widgets/select_menu.dart';
 import 'package:denunciasapp/widgets/text_box.dart';
@@ -24,6 +25,8 @@ class Denuncia4 extends StatefulWidget {
 }
 
 class _Denuncia4State extends State<Denuncia4> {
+  late final _image;
+  final signatureKey = GlobalKey<SignatureState>();
   bool _isChecked = false;
   List<Widget> _textFields = [];
   String? _selectedOption1;
@@ -175,7 +178,6 @@ class _Denuncia4State extends State<Denuncia4> {
               TextBox(
                   controller: controllerTestigos,
                   label: "INGRESA LOS NOMBRES DE LOS TESTIGOS"),
-
               Row(
                 children: [
                   Checkbox(
@@ -205,10 +207,11 @@ class _Denuncia4State extends State<Denuncia4> {
                 child: Container(
                   width: MediaQuery.of(context).size.width,
                   height: 200.0,
-                  child: Signature(cardSize: Size(MediaQuery.of(context).size.width, 200.0)),
+                  child: Signature(
+                      key: signatureKey,
+                      cardSize: Size(MediaQuery.of(context).size.width, 200.0)),
                 ),
               ),
-
               ElevatedButton(
                 onPressed: () {
                   if (_selectedOption1 != null &&
@@ -217,6 +220,8 @@ class _Denuncia4State extends State<Denuncia4> {
                       controllerCalleHechos.text != "" &&
                       controllerUbicacionActualHechos.text != "" &&
                       controllerTestigos != "") {
+                    getFirma();
+                    print("Sí se pudo");
                     widget.reporte.setSecondDatas(
                         _selectedOption1,
                         _selectedOption2,
@@ -230,7 +235,8 @@ class _Denuncia4State extends State<Denuncia4> {
                         controllerTestigos.text,
                         _isChecked,
                         controllerTelefonoDenunciante.text,
-                        controllerCorreoDenunciante.text);
+                        controllerCorreoDenunciante.text,
+                        _image);
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -246,5 +252,9 @@ class _Denuncia4State extends State<Denuncia4> {
         ),
       ),
     );
+  }
+
+  Future<void> getFirma() async {
+    final _image = await signatureKey.currentState!.getImage();
   }
 }
