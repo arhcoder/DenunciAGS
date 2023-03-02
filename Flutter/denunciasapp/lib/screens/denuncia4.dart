@@ -3,13 +3,11 @@ import '../models/denuncia.dart';
 import '../widgets/widgets.dart';
 
 class Denuncia4 extends StatelessWidget {
-  Denuncia denuncia;
+  final Denuncia denuncia;
   const Denuncia4({Key? key, required this.denuncia}) : super(key: key);
 
-
-   @override
+  @override
   Widget build(BuildContext context) {
-    return formulario_de_denuncia();
-  }
+    return FormularioDenunciante();
   }
 }
