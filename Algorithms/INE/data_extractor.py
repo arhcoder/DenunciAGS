@@ -37,7 +37,6 @@ def dataFromCURP(xcurp: str, texts: list):
     from detect_name import detectName
     from detect_domicile import detectDomicile
     from curp import CURP
-    import json
 
     # Structure of the data:
     data = {
@@ -57,7 +56,9 @@ def dataFromCURP(xcurp: str, texts: list):
             "cologne": "string",
             "street": "string",
             "exterior_number": "int",
-            "internal_number": "string"
+            "internal_number": "string",
+            "state": "string",
+            "municipality": "string"
         }
     }
 
@@ -131,7 +132,7 @@ def dataFromCURP(xcurp: str, texts: list):
         complete_name = detectName(curpobj, texts)
 
         # Gets the domicile finding on the INE image:
-        domicile = detectDomicile(curpobj, texts)
+        domicile = detectDomicile(texts)
 
         data["curp"] = curpobj.curp
         data["name"]["names"] = complete_name["names"]
@@ -145,6 +146,8 @@ def dataFromCURP(xcurp: str, texts: list):
         data["domicile"]["street"] = domicile["street"]
         data["domicile"]["exterior_number"] = domicile["exterior_number"]
         data["domicile"]["internal_number"] = domicile["internal_number"]
+        data["domicile"]["state"] = domicile["state"]
+        data["domicile"]["municipality"] = domicile["municipality"]
         
         # print(data)
         return data
