@@ -49,7 +49,9 @@ CON DJANGO Y AL FRONTEND EN FLUTTER. AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA :3
                 "cologne": "LAS AMÉRICAS",
                 "street": "CALLE MAR DE LA PLATA",
                 "exterior_number": "224",
-                "internal_number": "NA"
+                "internal_number": "NA",
+                "state": "AGS",
+                "municipality": "Asientos"
             }
         }
 

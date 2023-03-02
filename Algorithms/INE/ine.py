@@ -33,9 +33,9 @@ def getDataFromINE(imagePath: str):
     # a la CURP y los retorna:
     data = dataFromCURP(xcurp, texts)
 
-    print(data)
+    # print(data)
     return data
     
 # Example of use:
-dataOfChisrra = getDataFromINE("Images/chisrra.jpeg")
-# print(dataOfChisrra)
+dataOfChisrra = getDataFromINE("Images/tonio.jpeg")
+print(dataOfChisrra)

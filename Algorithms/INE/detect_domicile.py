@@ -6,7 +6,7 @@ def is_number(string: str):
     except ValueError:
         return False
 
-def detectDomicile(curpobj, texts: list):
+def detectDomicile(texts: list):
 
     '''
         Recieves the list of texts from INE,
@@ -18,7 +18,9 @@ def detectDomicile(curpobj, texts: list):
             "cologne": "string",
             "street": "string",
             "exterior_number": "string",
-            "internal_number": "string"
+            "internal_number": "string",
+            "state": "string",
+            "municipality": "string"
         },
 
         If it do not found a name, it returns
@@ -32,8 +34,10 @@ def detectDomicile(curpobj, texts: list):
         "postal_code": " ",
         "cologne": " ",
         "street": " ",
-        "exterior_number": "",
-        "internal_number": "NA"
+        "exterior_number": " ",
+        "internal_number": "NA",
+        "municipality": " ",
+        "state": " "
     }
 
     # Delimita el espacio entre las palabras:
@@ -139,6 +143,8 @@ def detectDomicile(curpobj, texts: list):
     domicile["street"] = street
     domicile["exterior_number"] = exteriorNumber
     domicile["internal_number"] = internalNumber
+    domicile["state"] = state
+    domicile["municipality"] = municipality
 
     # print(domicile)
     return domicile
