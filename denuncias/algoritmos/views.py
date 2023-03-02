@@ -59,6 +59,23 @@ def obtener_recomendaciones(denuncia):
             recomendaciones[articulo] = palabras_clave_encontradas
     return recomendaciones
 
+
+# RECIEVES THE INE IMAGE FROM THE FRONTEND:
+def process_image(request):
+    if request.method == 'POST' and request.FILES.get("image"):
+
+        # Access the uploaded image file:
+        uploaded_file = request.FILES["image"]
+        
+        # ACÁ SE PROCESA LA IMÁGEN #
+
+        # Return a JSON response with a success message:
+        return JsonResponse({"message": "Bonita INE"})
+    else:
+        # Return a JSON response with an error message
+        return JsonResponse({"message": "Error: Fea INE u.u"}, status=400)
+
+
 @csrf_exempt
 # Ejemplo de uso del sistema de recomendaciones de leyes
 def recomendaciones_ley(request):
