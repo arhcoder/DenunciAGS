@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
 import 'package:denunciasapp/models/denuncia.dart';
 import 'package:denunciasapp/screens/denuncia4.dart';
 import 'package:denunciasapp/widgets/subtitlesags.dart';
@@ -11,6 +14,27 @@ class CitzenReport extends StatefulWidget {
 }
 
 class _CitzenReport extends State<CitzenReport> {
+  late final _data;
+  final _datosPrueba = {
+    "curp": "OEAF771012HMCRGR09",
+    "name": {
+      "names": "JOSÉ FELIPE",
+      "first_last_name": "GONZÁLES",
+      "second_last_name": "HERNÁNDEZ"
+    },
+    "sex": "H", // "H" para hombre y "M" para mujer.
+    "birthdate": "24/04/1980",
+    "federative_entity": "MX-AGU",
+    "domicile": {
+      "postal_code": "20468",
+      "cologne": "LAS AMÉRICAS",
+      "street": "CALLE MAR DE LA PLATA",
+      "exterior_number": "224",
+      "internal_number": "NA",
+      "state": "Aguascalientes",
+      "municipality": "Asientos"
+    }
+  };
   //DATOS DENUNCIANTE
 
   late TextEditingController controllerCurp1;
@@ -50,6 +74,14 @@ class _CitzenReport extends State<CitzenReport> {
 //OBJETO REPORTE
   @override
   void initState() {
+    //Conseguimos los datos del json
+    /*final response =
+        await http.get(Uri.parse('https://ejemplo.com/datos.json'));
+    if (response.statusCode == 200) {
+      _data = jsonDecode(response.body);
+    }*/
+    _data = _datosPrueba;
+
     controllerCurp1 = new TextEditingController();
     controllerNombre1 = new TextEditingController();
     controllerSexo1 = new TextEditingController();
@@ -97,33 +129,70 @@ class _CitzenReport extends State<CitzenReport> {
           SizedBox(
             height: 20,
           ),
-          TextBox(controllerCurp1, "CURP"),
-          TextBox(controllerNombre1, "NOMBRE"),
-          TextBox(controllerSexo1, "SEXO"),
-          TextBox(controllerCalle1, "CALLE"),
-          TextBox(controllerNoInterior1, "NO. INTERIOR"),
-          TextBox(controllerNoExterior1, "NO. EXTERIOR"),
-          TextBox(controllerColonia1, "COLONIA"),
-          TextBox(controllerMunicipio1, "MUNICIPIO"),
-          TextBox(controllerEstado1, "ESTADO"),
+          TextBox(
+              controller: controllerCurp1,
+              label: "CURP",
+              defaultText: _data['curp'],
+              onlyText: true,),
+          TextBox(
+            controller: controllerNombre1,
+            label: "NOMBRE",
+            defaultText:
+                "${_data['name']['names']} ${_data['name']['first_last_name']} ${_data['name']['second_last_name']} ",
+          ),
+          TextBox(
+            controller: controllerSexo1,
+            label: "SEXO",
+            defaultText: _data['sex'],
+          ),
+          TextBox(
+            controller: controllerCalle1,
+            label: "CALLE",
+            defaultText: _data['domicile']['street'],
+          ),
+          TextBox(
+            controller: controllerNoInterior1,
+            label: "NO. INTERIOR",
+            defaultText: _data['domicile']['internal_number'],
+          ),
+          TextBox(
+            controller: controllerNoExterior1,
+            label: "NO. EXTERIOR",
+            defaultText: _data['domicile']['exterior_number'],
+          ),
+          TextBox(
+            controller: controllerColonia1,
+            label: "COLONIA",
+            defaultText: _data['domicile']['cologne'],
+          ),
+          TextBox(
+            controller: controllerMunicipio1,
+            label: "MUNICIPIO",
+            defaultText: _data["domicile"]["municipality"],
+          ),
+          TextBox(
+            controller: controllerEstado1,
+            label: "ESTADO",
+            defaultText: _data['federative_entity'],
+          ),
           SizedBox(
             height: 50,
           ),
           SubTitlesAgs(texto: "DATOS DEL DENUNCIADO"),
           SizedBox(height: 50),
-          TextBox(controllerNombre2, "NOMBRE"),
+          TextBox(controller: controllerNombre2, label: "NOMBRE"),
           SizedBox(height: 50),
           SubTitlesAgs(texto: "DOMICILIO DEL DENUNCIADO (OPCIONAL)"),
           SizedBox(
             height: 50,
           ),
-          TextBox(controllerSexo2, "SEXO"),
-          TextBox(controllerCalle2, "CALLE"),
-          TextBox(controllerNoInterior2, "NO. INTERIOR"),
-          TextBox(controllerNoExterior2, "NO. EXTERIOR"),
-          TextBox(controllerColonia2, "COLONIA"),
-          TextBox(controllerMunicipio2, "MUNICIPIO"),
-          TextBox(controllerEstado2, "ESTADO"),
+          TextBox(controller: controllerSexo2, label: "SEXO"),
+          TextBox(controller: controllerCalle2, label: "CALLE"),
+          TextBox(controller: controllerNoInterior2, label: "NO. INTERIOR"),
+          TextBox(controller: controllerNoExterior2, label: "NO. EXTERIOR"),
+          TextBox(controller: controllerColonia2, label: "COLONIA"),
+          TextBox(controller: controllerMunicipio2, label: "MUNICIPIO"),
+          TextBox(controller: controllerEstado2, label: "ESTADO"),
           Container(
             height: 80,
             child: ElevatedButton(
