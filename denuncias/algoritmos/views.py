@@ -67,10 +67,10 @@ def obtener_recomendaciones(denuncia):
 # RECIEVES THE INE IMAGE FROM THE FRONTEND:
 def process_image(request):
     
-    if request.method == 'POST':
+    if request.method == 'POST' and request.FILES.get("image"):
 
         # Access the uploaded image file:
-        # uploaded_file = request.FILES["image"]
+        uploaded_file = request.FILES["image"]
         
         # ACÁ SE PROCESA LA IMÁGEN #
         ''' filename = uploaded_file.name
@@ -80,7 +80,7 @@ def process_image(request):
                 f.write(chunk)
         '''
 
-        image_f = request.form.get("imageF")
+        ''' image_f = request.form.get("imageF")
         image_t = request.form.get("imageT")
 
         if image_f is not None and image_t is not None:
@@ -92,16 +92,15 @@ def process_image(request):
             with open("ines/imageF.jpg", "wb") as f:
                 f.write(image_f_bytes)
             with open("ines/imageT.jpg", "wb") as f:
-                f.write(image_t_bytes)
+                f.write(image_t_bytes)'''
 
             # Obtener datos personales de la INE:
 
-
             # Return a JSON response with a success message:
-            return "Nice"
+        return JsonResponse({"message": "Nice"})
     else:
         # Return a JSON response with an error message
-        return "Not nice"
+        return JsonResponse({"message": "Not nice"}, status=400)
 
 
 @csrf_exempt
