@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:denunciasapp/screens/denuncia3.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:flutter/foundation.dart';
@@ -115,8 +116,13 @@ class _Denuncia2 extends State<Denuncia2> {
                     //AQUÍ SE VAN A TENER QUE HACER TODOS LOS JALES DE RECONOCIMIENTO DE LOS DATOS DE LA INE
                     onPressed: () async {
                       String datos = await enviarImagen();
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Denuncia3(datosINE: datos,)));
+                      Map<String, dynamic> respuestaMap = json.decode(datos);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Denuncia3(
+                                    datosINE: respuestaMap,
+                                  )));
                     },
                     child: const Text("CONTINUAR"),
                   ),
@@ -172,7 +178,8 @@ class _Denuncia2 extends State<Denuncia2> {
 
   //Mandar imagenes
   Future<String> enviarImagen() async {
-    String url = 'https://emilioenlaluna-reimagined-space-59q6wpv4prqh4jrj-8000.preview.app.github.dev/algoritms/send_ine/';
+    String url =
+        'https://emilioenlaluna-reimagined-space-59q6wpv4prqh4jrj-8000.preview.app.github.dev/algoritms/send_ine/';
     http.Response respuesta;
     if (kIsWeb) {
       // Convierte la lista de bytes en un objeto String
@@ -180,7 +187,7 @@ class _Denuncia2 extends State<Denuncia2> {
       String imagenCodificadaT = base64Encode(webImageB);
 
       // Define el cuerpo de la petición POST
-     Map<String, String> cuerpo = {
+      Map<String, String> cuerpo = {
         'imagenF': imagenCodificadaF,
         'imagenT': imagenCodificadaT
       };

@@ -5,7 +5,7 @@ import 'package:denunciasapp/widgets/select_menu.dart';
 import 'package:denunciasapp/widgets/text_box.dart';
 
 import '/screens/homescreen.dart';
-import '../screens/citzen_report.dart';
+import 'denuncia3.dart';
 import '/widgets/custom_textformfield1.dart';
 import '/widgets/subtitlesags.dart';
 import 'package:flutter/material.dart';
@@ -257,7 +257,5 @@ class _Denuncia4State extends State<Denuncia4> {
     var request = http.MultipartRequest('POST', url);
     //var imageBytes = await widget.reporte.image!.readAsBytes();
     Map<String, dynamic> datos = {"curp": widget.reporte.curp1};
-    
   }
 }
-
