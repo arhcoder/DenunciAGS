@@ -1,3 +1,4 @@
+import base64
 from django.http import JsonResponse,request
 from django.shortcuts import render
 import nltk
@@ -62,18 +63,39 @@ def obtener_recomendaciones(denuncia):
 
 # RECIEVES THE INE IMAGE FROM THE FRONTEND:
 def process_image(request):
+    
     if request.method == 'POST' and request.FILES.get("image"):
 
         # Access the uploaded image file:
-        uploaded_file = request.FILES["image"]
+        # uploaded_file = request.FILES["image"]
         
         # ACÁ SE PROCESA LA IMÁGEN #
+        ''' filename = uploaded_file.name
+        image_path = os.path.join("uploaded_ines", filename)
+        with open(image_path, "wb+") as f:
+            for chunk in uploaded_file.chunks():
+                f.write(chunk)
+        '''
 
-        # Return a JSON response with a success message:
-        return JsonResponse({"message": "Bonita INE"})
-    else:
-        # Return a JSON response with an error message
-        return JsonResponse({"message": "Error: Fea INE u.u"}, status=400)
+        image_f = request.form.get("imageF")
+        image_t = request.form.get("imageT")
+
+        if image_f is not None and image_t is not None:
+            # Decodifica las imágenes de base64 a bytes
+            image_f_bytes = base64.b64decode(image_f)
+            image_t_bytes = base64.b64decode(image_t)
+
+            # Guarda las imágenes en archivos:
+            with open("ines/imageF.jpg", "wb") as f:
+                f.write(image_f_bytes)
+            with open("ines/imageT.jpg", "wb") as f:
+                f.write(image_t_bytes)
+
+            # Return a JSON response with a success message:
+            return JsonResponse({"message": "Bonita INE"})
+        else:
+            # Return a JSON response with an error message
+            return JsonResponse({"message": "Error: Fea INE u.u"}, status=400)
 
 
 @csrf_exempt
