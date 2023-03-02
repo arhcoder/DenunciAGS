@@ -1,0 +1,80 @@
+
+------------------------------------------------------------------------------
+
+ESTO ES PARA LOS QUE DESARROLLEN LA API, PARA INTERMEZCLAR LOS ALGORITMOS
+CON DJANGO Y AL FRONTEND EN FLUTTER. AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA :3
+
+------------------------------------------------------------------------------
+
+# DATOS DE LA INE:
+1. PARA OBTENER TODOS LOS DATOS DEL FORM TENIENDO LA IMÁGEN DE UNA INE:
+
+    * Teniendo la imágen guardada en LOCAL:
+        - Importar la librería dentro del código en que se quiera utilizar,
+        la extracción del texto de la imágen de este modo:
+
+            from ine import getDataFromINE
+
+    * Ya con la librería local importada, se manda a llamar la función
+    getDataFromINE(), que recibe la ruta de una imágen de la INE a leer.
+    Al pasar como parámetro la ruta de la CURP, hace todo el análisis y
+    retorna un JSON con los datos personales del individuo.
+
+        * Estos datos personales podrían llegar a estar incompletos, pues
+        si la foto no es lo suficientemente completa para mostrar datos de
+        poca importancia, el algoritmo no podrá leerlos.
+
+        * ESTE JSON DEBE SER ENVIÁDO AL FRONTEN MEDIANTE LA API DEL BACKEND
+        Y CON ESTE SE RELLENARÁN LOS DATOS DEL FORMULARIO DE DATOS PERSONALES
+        PARA EVITARLE AL USUARIO TECLEAR, LO MÁS QUE SE PUEDA.
+
+        * SI EL FRONTEND NO RECIBE ALGÚN DATO DE POCA IMPORTANCIA AL NO SER
+        CORRECTAMENTE LEÍDO, PODRÁ SIMPLEMENTE PONER LO QUE ENVÍE EL JSON,
+        QUE LUCE TAL QUE ASÍ:
+
+        {
+            "curp": "OEAF771012HMCRGR09",
+            "name":
+            {
+                "names": "JOSÉ FELIPE",
+                "first_last_name": "GONZÁLES",
+                "second_last_name": "HERNÁNDEZ"
+            },
+            "sex": "H", // "H" para hombre y "M" para mujer.
+            "birthdate": "24/04/1980",
+            "federative_entity": "MX-AGU",
+            "domicile":
+            {
+                "postal_code": "20468",
+                "cologne": "LAS AMÉRICAS",
+                "street": "CALLE MAR DE LA PLATA",
+                "exterior_number": "224",
+                "internal_number": "NA"
+            }
+        }
+
+        EL FRONTEND PODRÁ DECIDIR QUÉ DATOS LE SON ÚTILES.
+
+------------------------------------------------------------------------------
+
+# CÓDIGO DE SEGUIMIENTO:
+2. PARA OBTENER EL CÓDIGO DE SEGUIMIENTO AL REGISTRAR UNA DENUNCIA:
+
+    * Para la API, junto al ENDPOINT que llama el FRONTEND en el que ya envía
+    todos los datos del FORM para registrar la denuncia en la base de datos,
+    junto a eso, se genera el código de seguimiento para la base de datos.
+
+    * EL CÓDIGO DE SEGUIMIENTO ES DE 8 CARACTÉRES (ALFANUMÉRICO: LETRAS Y
+    NÚMEROS), Y SE GENERA DE MANERA ÚNICA PARA CADA VEZ, POR LO QUE ES
+    IMPORTANTE QUE SÓLO SE GENERE UNA VEZ Y SE GUARDE EN LA BASE DE DATOS.
+
+    * Importar la librería local de la manera:
+
+        from tracking_code import get_tracking_code
+
+    * LA FUNCIÓN get_tracking_code() recive una CURP en string, la que
+    ya debería tener el API del FORM. SE PASA COMO PARÁMETRO LA CURP
+    Y SE RECIBE UN CÓDIGO ALFANUMÉRICO DE OCHO CARACTERES, QUE ES EL
+    CÓDIGO DE SEGUIMIENTO.
+
+------------------------------------------------------------------------------
