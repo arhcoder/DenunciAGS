@@ -18,8 +18,9 @@ import nltk
 from nltk.chat.util import Chat, reflections
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
+# from django.response import Http
 
-from INE import 
+# from INE import 
 
 
 # Cargar los datos
@@ -66,7 +67,7 @@ def obtener_recomendaciones(denuncia):
 # RECIEVES THE INE IMAGE FROM THE FRONTEND:
 def process_image(request):
     
-    if request.method == 'POST' and request.FILES.get("image"):
+    if request.method == 'POST':
 
         # Access the uploaded image file:
         # uploaded_file = request.FILES["image"]
@@ -98,9 +99,9 @@ def process_image(request):
 
             # Return a JSON response with a success message:
             return "Nice"
-        else:
-            # Return a JSON response with an error message
-            return "Not nice"
+    else:
+        # Return a JSON response with an error message
+        return "Not nice"
 
 
 @csrf_exempt
