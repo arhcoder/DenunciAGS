@@ -15,7 +15,7 @@ class estatusdenuncia(models.Model):
 class denuncia(models.Model):
     nombre = models.CharField(max_length=45)
     apellidoPaterno = models.CharField(max_length=45)
-    apellidoPaterno = models.CharField(max_length=45)
+    apellidoMaterno = models.CharField(max_length=45)
     curp = models.CharField(max_length=45)
     estatus=models.ForeignKey(estatusdenuncia, on_delete=models.CASCADE,null=True)
     respuesta = models.CharField(max_length=300,null=True)
