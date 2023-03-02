@@ -48,9 +48,20 @@ class _FormularioDenuncianteState extends State<FormularioDenunciante> {
     "ROBO DE OBJETOS": ["CON VIOLENCIA FÍSICA", "CON VIOLENCIA MORAL"],
     "ROBO DE VEHÍCULOS": ["CON VIOLENCIA FÍSICA", "CON VIOLENCIA MORAL"],
     "ROBO A CASA HABITACIÓN": ["CON VIOLENCIA FÍSICA", "CON VIOLENCIA MORAL"],
-    "VIOLENCIA DOMESTICA": [],
-    "LESIONES CULPUSOS": [],
-    "LESIONES DOLOSAS": [],
+    "VIOLENCIA DOMESTICA": [
+      "ACOSO",
+      "AGRESION",
+      "VIOLENCIA FÍSICA",
+      "PRIVACIÓN DE LA LIBERTAD"
+    ],
+    "LESIONES CULPUSOS": ["SIMPLES", "GRAVES", "CAUSANTES DE MUERTE"],
+    "LESIONES DOLOSAS": [
+      "PREMEDITACIÓN",
+      "VENTAJA",
+      "ALEVOSÍA",
+      "TRAICIÓN",
+      "BRUTAL FEROCIDAD"
+    ],
     "DAÑO A LA PROPIEDAD": [],
     "AMENAZAS": [],
     "DELITOS CONTRA LA SALUD RELACIONADOS CON NARCÓTICOS": [],
@@ -59,12 +70,22 @@ class _FormularioDenuncianteState extends State<FormularioDenunciante> {
     "DESPOJO": [],
     "BUSO DE CONFIANZA": [],
     "ABUSO SEXUAL": [],
-    "DELITOS CONTRA MENORES": [],
+    "DELITOS CONTRA MENORES": [
+      "ABUSO SEXUAL",
+      "TRATA DE MENORES",
+      "MALTRATO",
+      "PRIVACION DE LA LIBERTAD",
+      "PORNOGRAFÍA"
+    ],
   };
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("CONFIRMACIÓN DE DATOS"),
+        backgroundColor: Color.fromRGBO(41, 51, 115, 1),
+      ),
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.all(20.0),
@@ -94,7 +115,7 @@ class _FormularioDenuncianteState extends State<FormularioDenunciante> {
               ),
               SizedBox(height: 20.0),
               DropdownButton<String>(
-                hint: Text('Selecciona una opción'),
+                hint: Text('SELECCIONA UNA OPCIÓN'),
                 value: _selectedOption2,
                 onChanged: (String? newValue) {
                   setState(() {
@@ -183,101 +204,3 @@ class _FormularioDenuncianteState extends State<FormularioDenunciante> {
     );
   }
 }
-
-
-
-
-/*
-// Defining a custom Form widget.
-class FormularioDenunciante extends StatefulWidget {
-  final List<String> reportOption;
-  final String selectedOption;
-
-  const FormularioDenunciante({
-    Key? key,
-    this.reportOption = const [
-      "ROBO DE OBJETOS",
-      "ROBO DE VEHÍCULOS",
-      "ROBO A CASA HABITACIÓN",
-      "VIOLENCIA DOMESTICA",
-      "LESIONES CULPUSOS",
-      "LESIONES DOLOSAS",
-      "DAÑO A LA PROPIEDAD",
-      "AMENAZAS",
-      "DELITOS CONTRA LA SALUD RELACIONADOS CON NARCÓTICOS",
-      "FRAUDE",
-      "HOMICIDIO",
-      "DESPOJO",
-      "BUSO DE CONFIANZA",
-      "ABUSO SEXUAL",
-      "DELITOS CONTRA MENORES"
-    ],
-    this.selectedOption = "ROBO DE OBJETOS",
-  }) : super(key: key);
-
-  FormularioDenuncianteState createState() {
-    return FormularioDenuncianteState();
-  }
-}
-
-// Defining a corresponding State class.
-class FormularioDenuncianteState extends State<FormularioDenunciante> {
-  final _formKey = GlobalKey<FormState>();
-  List<String> _actionOpcions = [];
-  String? _report;
-  String? _report2;
-  @override
-  Widget build(BuildContext context) {
-    // Building a Form widget using the _formKey created above.
-    return Scaffold(
-      body: Form(
-        key: _formKey,
-        child: Column(
-          children: [
-            SelectMenuWidget(
-                hinttext: "¿Cúal opción se acerca más a su denuncia?",
-                options: widget.reportOption,
-                selectedOption: widget.selectedOption,
-                onChanged: (value) {
-                  _report = value;
-                  setState(() {
-                    selectAction(_report);
-                  });
-                },
-                obligatory: true),
-            if (_actionOpcions.isNotEmpty)
-              SelectMenuWidget(
-                  hinttext: "¿Cual describe mejor su denuncia?",
-                  options: _actionOpcions,
-                  selectedOption: "                           ",
-                  onChanged: (value) {
-                    _report2 = value;
-                  },
-                  obligatory: true),
-          ],
-        ),
-      ),
-    );
-  }
-
-  void selectAction(String? report) {
-    switch (report) {
-      case "ROBO DE OBJETOS":
-        _actionOpcions = ["CON VIOLENCIA FÍSICA", "CON VIOLENCIA MORAL"];
-        break;
-      case "ROBO DE VEHÍCULOS":
-        _actionOpcions = ["CON VIOLENCIA FÍSICA", "CON VIOLENCIA MORAL"];
-        break;
-      case "ROBO A CASA HABITACIÓN":
-        _actionOpcions = ["CON VIOLENCIA FÍSICA", "CON VIOLENCIA MORAL"];
-        break;
-      case "VIOLENCIA DOMESTICA":
-        break;
-      case "LESIONES DOLOSAS":
-        break;
-      case "LESIONES CULPOSAS":
-        break;
-    }
-  }
-}
-*/

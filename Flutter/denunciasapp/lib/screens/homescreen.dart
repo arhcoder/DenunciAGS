@@ -9,6 +9,10 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("BIENVENIDO"),
+        backgroundColor: Color.fromRGBO(41, 51, 115, 1),
+      ),
       body: SingleChildScrollView(
         child: Center(
           heightFactor: 1,
@@ -26,12 +30,14 @@ class HomeScreen extends StatelessWidget {
               SizedBox(height: 50),
               SubTitlesAgs(texto: "REALIZAR DENUNCIA"),
               SizedBox(height: 50),
-              ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Denuncia2()));
-                  },
-                  child: Text("INICIAR")),
+              Container(
+                child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Denuncia2()));
+                    },
+                    child: Text("INICIAR")),
+              ),
               //SECCIÓN DE SEGUIMIENTO DE DENUNCIA
               SizedBox(height: 50),
               SubTitlesAgs(texto: "CONSULTAR UNA DENUNCIA"),
