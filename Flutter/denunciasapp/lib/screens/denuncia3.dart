@@ -1,3 +1,4 @@
+import 'package:denunciasapp/screens/citzen_report.dart';
 import 'package:flutter/material.dart';
 import '../widgets/widgets.dart';
 
@@ -6,23 +7,6 @@ class Denuncia3 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        heightFactor: 1,
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.only(left: 20, right: 50),
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 50,
-                ),
-                FormularioDenunciante()
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
+    return CitzenReport();
   }
 }

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import '../models/denuncia.dart';
 import '../widgets/widgets.dart';
 
 class Denuncia4 extends StatelessWidget {
-  Denuncia4({Key? key}) : super(key: key);
+  Denuncia denuncia;
+  Denuncia4({Key? key, required this.denuncia}) : super(key: key);
 
   final List<String> reportOption = [
     "ROBO DE OBJETOS",
@@ -39,10 +41,7 @@ class Denuncia4 extends StatelessWidget {
                 SelectMenuWidget(
                     options: reportOption,
                     selectedOption: selectedOption,
-                    onChanged: (value) {
-                      print('Seleccionaste la opción $value');
-                    }
-                  )
+                    onChanged: (value) {})
               ],
             ),
           ),
