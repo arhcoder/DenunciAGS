@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../screens/homescreen.dart';
+
 // Defining a custom Form widget.
 class CustomForm1 extends StatefulWidget {
   const CustomForm1({super.key});
@@ -41,6 +43,11 @@ class CustomForm1State extends State<CustomForm1> {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text('Processing Data')),
                 );
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            HomeScreen())); //aquí va la pantalla de estado de la denuncia
               }
             },
             child: const Text('CONSULTAR'),
