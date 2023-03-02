@@ -1,6 +1,30 @@
 from rest_framework import serializers
-from .models import denuncia,evidencias
+from .models import *
 
+#
+# ESTATUS DENUNCIA
+#
+class EstatusDenunciaListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = estatusdenuncia
+        fields = [
+           'nombre',
+            'descripcion'
+        ]
+
+
+
+class EstatusDenunciaDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = estatusdenuncia
+        fields = [
+           'nombre',
+            'descripcion'
+        ]
+
+#
+# DENUNCIAS 
+#
 
 class DenunciaListSerializer(serializers.ModelSerializer):
     class Meta:
@@ -15,8 +39,6 @@ class DenunciaListSerializer(serializers.ModelSerializer):
             'descripcion'
         ]
 
-
-
 class DenunciaDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = denuncia
@@ -30,6 +52,35 @@ class DenunciaDetailSerializer(serializers.ModelSerializer):
             'descripcion'
         ]
 
+#
+# LUGAR DENUNCIA
+#
+
+class LugarDenunciaListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = lugarDenuncia
+        fields = [
+           'denuncia',
+            'calle',
+            'entreCalleUno',
+            'entreCalleDos',
+            'descripcion'
+        ]
+
+class LugarDenunciaDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = lugarDenuncia
+        fields = [
+           'denuncia',
+            'calle',
+            'entreCalleUno',
+            'entreCalleDos',
+            'descripcion'
+        ]
+
+#
+# EVIDENCIAS
+#
 
 class EvidenciaListSerializer(serializers.ModelSerializer):
     class Meta:
@@ -49,4 +100,34 @@ class EvidenciaDetailSerializer(serializers.ModelSerializer):
            'id',
             'descripcion',
             'url'
+        ]
+
+#
+# DOMICILIO 
+#
+
+class DomicilioListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = domicilio
+        fields = [
+           'denuncia',
+            'municipio',
+            'codigoPostal',
+            'colonia',
+            'calle',
+            'numExterior',
+            'numInterior'
+        ]
+
+class DomicilioDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = domicilio
+        fields = [
+           'denuncia',
+            'municipio',
+            'codigoPostal',
+            'colonia',
+            'calle',
+            'numExterior',
+            'numInterior'
         ]

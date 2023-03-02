@@ -3,8 +3,31 @@ from rest_framework import generics
 from .serializers import *
 from .models import *
 
-# Create your views here.
+#
+# ESTATUS DENUNCIAS
+#
 
+class EstatusDenunciaListAPIView(generics.ListAPIView):
+    queryset=estatusdenuncia.objects.all()
+    serializer_class=EstatusDenunciaListSerializer
+
+class EstatusDenunciaRetrieveAPIView(generics.RetrieveAPIView):
+    lookup_field='id'
+    queryset=estatusdenuncia.objects.all()
+    serializer_class=EstatusDenunciaDetailSerializer
+
+class EstatusDenunciaCreateAPIView(generics.CreateAPIView):
+    queryset=estatusdenuncia.objects.all()
+    serializer_class=EstatusDenunciaDetailSerializer
+
+class EstatusDenunciaRetrieveUpdateAPIView(generics.RetrieveUpdateAPIView):
+    lookup_field='id'
+    queryset=estatusdenuncia.objects.all()
+    serializer_class=EstatusDenunciaDetailSerializer
+
+class EstatusDenunciaDestroyAPIView(generics.DestroyAPIView):
+    lookup_field='id'
+    queryset=estatusdenuncia.objects.all()
 
 #
 # DENUNCIAS 
@@ -33,6 +56,32 @@ class DenunciaDestroyAPIView(generics.DestroyAPIView):
     queryset=denuncia.objects.all()
 
 #
+# LUGAR DENUNCIA
+#
+
+class LugarDenunciaListAPIView(generics.ListAPIView):
+    queryset=lugarDenuncia.objects.all()
+    serializer_class=LugarDenunciaListSerializer
+
+class LugarDenunciaRetrieveAPIView(generics.RetrieveAPIView):
+    lookup_field='id'
+    queryset=lugarDenuncia.objects.all()
+    serializer_class=LugarDenunciaDetailSerializer
+
+class LugarDenunciaCreateAPIView(generics.CreateAPIView):
+    queryset=lugarDenuncia.objects.all()
+    serializer_class=LugarDenunciaDetailSerializer
+
+class LugarDenunciaRetrieveUpdateAPIView(generics.RetrieveUpdateAPIView):
+    lookup_field='id'
+    queryset=lugarDenuncia.objects.all()
+    serializer_class=LugarDenunciaDetailSerializer
+
+class LugarDenunciaDestroyAPIView(generics.DestroyAPIView):
+    lookup_field='id'
+    queryset=lugarDenuncia.objects.all()
+
+#
 # EVIDENCIAS
 #
 
@@ -57,3 +106,29 @@ class EvidenciaRetrieveUpdateAPIView(generics.RetrieveUpdateAPIView):
 class EvidenciaDestroyAPIView(generics.DestroyAPIView):
     lookup_field='id'
     queryset=evidencias.objects.all()
+
+#
+# DOMICILIO
+#
+
+class DomicilioListAPIView(generics.ListAPIView):
+    queryset=domicilio.objects.all()
+    serializer_class=DomicilioListSerializer
+
+class DomicilioRetrieveAPIView(generics.RetrieveAPIView):
+    lookup_field='id'
+    queryset=domicilio.objects.all()
+    serializer_class=DomicilioListSerializer
+
+class DomicilioCreateAPIView(generics.CreateAPIView):
+    queryset=domicilio.objects.all()
+    serializer_class=DomicilioListSerializer
+
+class DomicilioRetrieveUpdateAPIView(generics.RetrieveUpdateAPIView):
+    lookup_field='id'
+    queryset=domicilio.objects.all()
+    serializer_class=DomicilioListSerializer
+
+class DomicilioDestroyAPIView(generics.DestroyAPIView):
+    lookup_field='id'
+    queryset=domicilio.objects.all()    
