@@ -44,4 +44,4 @@ def textFrom(imageURL: str):
     return words
 
 # Example use:
-print(textFrom("Images/chisrra.jpeg"))
+# print(textFrom("Images/chisrra.jpeg"))

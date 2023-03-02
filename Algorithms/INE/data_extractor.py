@@ -34,7 +34,8 @@ def dataFromCURP(xcurp: str, texts: list):
         }
     '''
 
-    from difflib import SequenceMatcher
+    from detect_name import detectName
+    from detect_domicile import detectDomicile
     from curp import CURP
     import json
 
@@ -73,11 +74,11 @@ def dataFromCURP(xcurp: str, texts: list):
         # print(f"JSON: {curpobj.json()}")
 
         # Tries to get personal information about the guy:
-        names = " "
-        first_last_name = " "
-        second_last_name = " "
-        with open("../Keys/curp.json") as file:
-            token = str(json.load(file)["token"])
+        # names = " "
+        # first_last_name = " "
+        # second_last_name = " "
+        # with open("../Keys/curp.json") as file:
+        #    token = str(json.load(file)["token"])
         
         '''
             PARA OBTENER LOS DATOS DEL NOMBRE Y EL DOMICILIO:
@@ -126,63 +127,26 @@ def dataFromCURP(xcurp: str, texts: list):
             if curpobj.segundo_apellido_valido(text):
                 print(f"Primer apellido candidato: {text}") '''
 
-        # Delimita el espacio entre las palabras:
-        # NOMBRE y DOMICILIO, PUES EN LA INE estará ahí el nombre:
-        word_index_for_name = 0
-        word_index_for_domicile = 0
-        for i, text in enumerate(texts):
-            # print(text)
-            # Si encuentra la palabra "NOMBRE EN LA INE";
-            # Es decir, si la palabra actual se parece en un 88% a "NOMBRE":
-            # print(SequenceMatcher(None, str(text).upper, "NOMBRE").ratio())
-            # Guarda en dos variables los índices de la lista de palabras entre
-            # los que están las palabras NOMBRE y DOMICILIO:
-            name_similarity_ratio = SequenceMatcher(None, str(text), str("NOMBRE")).ratio()
-            domicile_similarity_ratio = SequenceMatcher(None, str(text), str("DOMICILIO")).ratio()
-            if name_similarity_ratio > 0.88:
-                word_index_for_name = i
-                # print(text)
-            if  domicile_similarity_ratio > 0.88:
-                word_index_for_domicile = i
-                # print(text)
-            
-        # Comprueba el nombre completo:
-        # print(texts[word_index_for_name+1])
-        # print(texts[word_index_for_name+2])
-        # print(texts[word_index_for_name+3])
-        # print(texts[word_index_for_name+3] + " " + texts[word_index_for_name+4])
-        if curpobj.primer_apellido_valido(texts[word_index_for_name+1]):
-            # print(f"Primer apellido: {texts[word_index_for_name+1]}")
-            first_last_name = str(texts[word_index_for_name+1])
-        
-        if curpobj.segundo_apellido_valido(texts[word_index_for_name+2]):
-            # print(f"Segundo apellido: {texts[word_index_for_name+2]}")
-            second_last_name = str(texts[word_index_for_name+2])
-        
-        if curpobj.nombre_valido(texts[word_index_for_name+3]):
-            # print(f"Nombre: {texts[word_index_for_name+3]}")
-            names = str(texts[word_index_for_name+4])
+        # Get the name finding on the INE image:
+        complete_name = detectName(curpobj, texts)
 
-        if curpobj.nombre_valido(str(texts[word_index_for_name+3] + "" + texts[word_index_for_name+4])):
-            # print(f"Nombre: {texts[word_index_for_name+3]} {texts[word_index_for_name+4]}")
-            names = str(texts[word_index_for_name+3]) + " " + str(texts[word_index_for_name+4])
-
-
+        # Gets the domicile finding on the INE image:
+        domicile = detectDomicile(curpobj, texts)
 
         data["curp"] = curpobj.curp
-        data["name"]["names"] = names
-        data["name"]["first_last_name"] = first_last_name
-        data["name"]["second_last_name"] = second_last_name
+        data["name"]["names"] = complete_name["names"]
+        data["name"]["first_last_name"] = complete_name["first_last_name"]
+        data["name"]["second_last_name"] = complete_name["second_last_name"]
         data["sex"] = "H" if curpobj.sexo.HOMBRE else "M"
         data["birthdate"] = curpobj.fecha_nacimiento.strftime("%d/%m/%Y")
         data["federative_entity"] = curpobj.entidad_iso
-        data["domicile"]["postal_code"] = "X"
-        data["domicile"]["cologne"] = "X"
-        data["domicile"]["street"] = "X"
-        data["domicile"]["exterior_number"] = "X"
-        data["domicile"]["internal_number"] = "X"
+        data["domicile"]["postal_code"] = domicile["postal_code"]
+        data["domicile"]["cologne"] = domicile["cologne"]
+        data["domicile"]["street"] = domicile["street"]
+        data["domicile"]["exterior_number"] = domicile["exterior_number"]
+        data["domicile"]["internal_number"] = domicile["internal_number"]
         
-        print(data)
+        # print(data)
         return data
     
     except:

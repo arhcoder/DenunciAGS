@@ -24,7 +24,7 @@ def getDataFromINE(imagePath: str):
     for text in texts:
         xcurp = isThisACURP(text)
         if xcurp:
-            print(f"{xcurp}")
+            # print(f"{xcurp}")
             break
     if not xcurp:
         return {"Error": "No se detectó CURP :c"}
@@ -33,8 +33,9 @@ def getDataFromINE(imagePath: str):
     # a la CURP y los retorna:
     data = dataFromCURP(xcurp, texts)
 
+    print(data)
     return data
     
-    
 # Example of use:
-dataOfChisrra = getDataFromINE("Images/chisrra.jpeg")
+dataOfChisrra = getDataFromINE("Images/Tonio.jpeg")
+# print(dataOfChisrra)
