@@ -7,8 +7,5 @@ urlpatterns = [
     path('recomendaciones/', views.recomendaciones_ley,name="recomendaciones"),
     path('clasificador/', views.clasificar_delito,name="clasificador"),
     path('chat/', views.chat_bot,name="chat"),
+    path("send_ine/", views.process_image, name="process_image"),
     ]
-
-urlpatterns = [
-    path("send_ine/", process_image, name="process_image"),
-]
