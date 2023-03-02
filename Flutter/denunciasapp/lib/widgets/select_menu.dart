@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'custom_form_widget1.dart';
+import 'custom_textformfield1.dart';
 
 class SelectMenuWidget extends StatefulWidget {
   final String hinttext;
@@ -6,7 +8,7 @@ class SelectMenuWidget extends StatefulWidget {
   final String selectedOption;
   final ValueChanged<String?> onChanged;
   final bool obligatory;
-  
+
   const SelectMenuWidget({
     Key? key,
     required this.hinttext,
@@ -15,7 +17,7 @@ class SelectMenuWidget extends StatefulWidget {
     required this.onChanged,
     required this.obligatory,
   }) : super(key: key);
-  
+
   @override
   _SelectMenuWidgetState createState() => _SelectMenuWidgetState();
 }
@@ -35,7 +37,9 @@ class _SelectMenuWidgetState extends State<SelectMenuWidget> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        SizedBox(height: 8,),
+        SizedBox(
+          height: 8,
+        ),
         DropdownButton<String>(
           value: widget.selectedOption,
           icon: Icon(Icons.arrow_drop_down_circle_outlined),
@@ -44,19 +48,18 @@ class _SelectMenuWidgetState extends State<SelectMenuWidget> {
               value: val,
               child: Text(val),
             );
-          }).toList(), 
+          }).toList(),
           onChanged: ((String? value) {
-            if(widget.obligatory && value == null) {
+            if (widget.obligatory && value == null) {
               setState(() {
-              _errorText = null;                
+                _errorText = null;
+              });
+            } else {
+              setState(() {
+                _errorText = null;
               });
             }
-            else {
-              setState(() {
-              _errorText = null;                
-              });
-            }
-              widget.onChanged(value);
+            widget.onChanged(value);
           }),
         ),
         Container(
@@ -72,7 +75,6 @@ class _SelectMenuWidgetState extends State<SelectMenuWidget> {
       ],
     );
   }
-
 }
 
 /*
