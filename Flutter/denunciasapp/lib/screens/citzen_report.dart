@@ -123,7 +123,7 @@ class _CitzenReport extends State<CitzenReport> {
     return Scaffold(
         appBar: AppBar(
           title: Text("CONFIRMACIÓN DE DATOS"),
-          backgroundColor: Color.fromRGBO(41, 51, 115, 1),
+          backgroundColor: Color.fromARGB(255, 44, 41, 115),
           leading: new IconButton(
             icon: new Icon(Icons.arrow_back),
             onPressed: () => Navigator.of(context).pop(),

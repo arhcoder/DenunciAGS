@@ -1,4 +1,5 @@
 import 'package:denunciasapp/models/denuncia.dart';
+import 'package:denunciasapp/widgets/MySignature.dart';
 import 'package:denunciasapp/widgets/select_menu.dart';
 import 'package:denunciasapp/widgets/text_box.dart';
 
@@ -88,7 +89,7 @@ class _Denuncia4State extends State<Denuncia4> {
     return Scaffold(
       appBar: AppBar(
         title: Text("CONFIRMACIÓN DE DATOS"),
-        backgroundColor: Color.fromRGBO(41, 51, 115, 1),
+        backgroundColor: Color.fromARGB(255, 44, 41, 115),
         leading: new IconButton(
           icon: new Icon(Icons.arrow_back),
           onPressed: () => Navigator.of(context).pop(),
@@ -199,7 +200,14 @@ class _Denuncia4State extends State<Denuncia4> {
                 onlyText: !_isChecked,
               ),
               SubTitlesAgs(texto: "FIRMA"),
-              //INSERTAR WIDGET DE LA FIRMA
+              Card(
+                elevation: 4.0,
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 200.0,
+                  child: Signature(cardSize: Size(MediaQuery.of(context).size.width, 200.0)),
+                ),
+              ),
 
               ElevatedButton(
                 onPressed: () {

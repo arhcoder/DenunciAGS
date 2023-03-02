@@ -13,7 +13,7 @@ class Denuncia5 extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("BIENVENIDO"),
-        backgroundColor: Color.fromRGBO(41, 51, 115, 1),
+        backgroundColor: Color.fromARGB(255, 44, 41, 115),
       ),
       body: SingleChildScrollView(
         child: Center(
