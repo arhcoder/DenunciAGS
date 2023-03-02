@@ -113,9 +113,10 @@ class _Denuncia2 extends State<Denuncia2> {
                   child: ElevatedButton(
                     //ACCIÓN AL PRESIONAR
                     //AQUÍ SE VAN A TENER QUE HACER TODOS LOS JALES DE RECONOCIMIENTO DE LOS DATOS DE LA INE
-                    onPressed: () => {
+                    onPressed: () async {
+                      String datos = await enviarImagen();
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Denuncia3()))
+                          MaterialPageRoute(builder: (context) => Denuncia3(datosINE: datos,)));
                     },
                     child: const Text("CONTINUAR"),
                   ),
@@ -170,8 +171,8 @@ class _Denuncia2 extends State<Denuncia2> {
   }
 
   //Mandar imagenes
-  Future<void> enviarImagen() async {
-    String url = 'https://ejemplo.com/mi-endpoint';
+  Future<String> enviarImagen() async {
+    String url = 'https://emilioenlaluna-reimagined-space-59q6wpv4prqh4jrj-8000.preview.app.github.dev/algoritms/send_ine/';
     http.Response respuesta;
     if (kIsWeb) {
       // Convierte la lista de bytes en un objeto String
@@ -179,13 +180,13 @@ class _Denuncia2 extends State<Denuncia2> {
       String imagenCodificadaT = base64Encode(webImageB);
 
       // Define el cuerpo de la petición POST
-      Map<String, String> cuerpo = {
+     Map<String, String> cuerpo = {
         'imagenF': imagenCodificadaF,
         'imagenT': imagenCodificadaT
       };
 
       // Envía la petición POST
-      respuesta = await http.post(Uri.parse(url), body: cuerpo);
+      respuesta = await http.post(Uri.parse(url), body: json.encode(cuerpo));
     } else {
       // Crea un objeto `http.MultipartRequest` para manejar la petición POST
       http.MultipartRequest request =
@@ -210,9 +211,13 @@ class _Denuncia2 extends State<Denuncia2> {
     // Verifica el código de estado de la respuesta
     if (respuesta.statusCode == 200) {
       print("Se hizo el envio de forma adecuada");
+      print(respuesta.body);
+
+      return respuesta.body;
     } else {
       // La petición falló
-      print("Fallo el envuio");
+      print("Fallo el envio ${respuesta.statusCode}");
     }
+    return "";
   }
 }
