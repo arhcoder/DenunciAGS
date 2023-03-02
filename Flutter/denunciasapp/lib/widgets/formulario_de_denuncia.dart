@@ -145,13 +145,19 @@ class _FormularioDenuncianteState extends State<FormularioDenunciante> {
               TextBox(
                   controller: controllerNarrativaDenuncia,
                   label: "INGRESA LOS NOMBRES DE LOS TESTIGOS"),
-              Checkbox(
-                value: _isChecked,
-                onChanged: (value) {
-                  setState(() {
-                    _isChecked = value!;
-                  });
-                },
+
+              Row(
+                children: [
+                  Checkbox(
+                    value: _isChecked,
+                    onChanged: (value) {
+                      setState(() {
+                        _isChecked = value!;
+                      });
+                    },
+                  ),
+                  Text("DENUNCIA NO ANONIMA"),
+                ],
               ),
               TextBox(
                 controller: controllerTelefonoDenunciante,
@@ -163,6 +169,7 @@ class _FormularioDenuncianteState extends State<FormularioDenunciante> {
                 label: "INGRESA TU CORREO",
                 onlyText: !_isChecked,
               ),
+              SubTitlesAgs(texto: "FIRMA"),
               //INSERTAR WIDGET DE LA FIRMA
 
               ElevatedButton(
