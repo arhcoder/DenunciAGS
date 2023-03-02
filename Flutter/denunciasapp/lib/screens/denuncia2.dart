@@ -34,6 +34,10 @@ class _Denuncia2 extends State<Denuncia2> {
       appBar: AppBar(
         title: Text("IDENTIFICACIÓN"),
         backgroundColor: Color.fromRGBO(41, 51, 115, 1),
+        leading: new IconButton(
+          icon: new Icon(Icons.arrow_back),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
       ),
       body: Center(
         heightFactor: 1,

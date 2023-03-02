@@ -85,6 +85,10 @@ class _FormularioDenuncianteState extends State<FormularioDenunciante> {
       appBar: AppBar(
         title: Text("CONFIRMACIÓN DE DATOS"),
         backgroundColor: Color.fromRGBO(41, 51, 115, 1),
+        leading: new IconButton(
+          icon: new Icon(Icons.arrow_back),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
       ),
       body: SingleChildScrollView(
         child: Container(
