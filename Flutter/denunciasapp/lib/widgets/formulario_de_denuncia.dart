@@ -1,3 +1,4 @@
+import 'package:denunciasapp/widgets/MySignature.dart';
 import 'package:denunciasapp/widgets/select_menu.dart';
 import 'package:denunciasapp/widgets/text_box.dart';
 
@@ -16,6 +17,8 @@ class FormularioDenunciante extends StatefulWidget {
 }
 
 class _FormularioDenuncianteState extends State<FormularioDenunciante> {
+  final signatureKey = GlobalKey<SignatureState>();
+  late final _image;
   bool _isChecked = false;
   List<Widget> _textFields = [];
   String? _selectedOption1;
@@ -196,9 +199,18 @@ class _FormularioDenuncianteState extends State<FormularioDenunciante> {
               ),
               SubTitlesAgs(texto: "FIRMA"),
               //INSERTAR WIDGET DE LA FIRMA
-
+              Card(
+                elevation: 4.0,
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 200.0,
+                  child: Signature(key: signatureKey,cardSize: Size(MediaQuery.of(context).size.width, 200.0)),
+                )
+              ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () { 
+                  getFirma();
+                  },
                 child: Text('CONTINUAR'),
               ),
             ],
@@ -206,5 +218,9 @@ class _FormularioDenuncianteState extends State<FormularioDenunciante> {
         ),
       ),
     );
+  }
+
+  Future<void> getFirma() async {
+    final _image = await signatureKey.currentState!.getImage();
   }
 }
