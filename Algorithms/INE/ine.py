@@ -31,7 +31,7 @@ def getDataFromINE(imagePath: str):
     
     # Extrae los datos de la persona, con base
     # a la CURP y los retorna:
-    data = dataFromCURP(xcurp)
+    data = dataFromCURP(xcurp, texts)
 
     return data
     

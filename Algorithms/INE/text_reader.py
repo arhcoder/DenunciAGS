@@ -39,9 +39,9 @@ def textFrom(imageURL: str):
 
     # Prints the detected text:
     # for text in texts:
-    #    print('"{}"'.format(text.description))
+    #   print('"{}"'.format(text.description))
 
     return words
 
 # Example use:
-# print(textFrom("Images/ine.png"))
+print(textFrom("Images/chisrra.jpeg"))
