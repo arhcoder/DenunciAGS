@@ -5,7 +5,6 @@ class TextBox extends StatefulWidget {
   final String label;
   final String? defaultText;
   final bool onlyText;
-
   const TextBox({
     Key? key,
     required this.controller,
