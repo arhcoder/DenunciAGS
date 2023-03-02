@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 class CustomTextFormField1 extends StatelessWidget {
   final String hinttext;
+  final bool obligatory;
   const CustomTextFormField1({
+    required this.obligatory,
     required this.hinttext,
     Key? key,
   }) : super(key: key);
@@ -15,8 +17,10 @@ class CustomTextFormField1 extends StatelessWidget {
           decoration: new InputDecoration(hintText: hinttext),
           // passing the user entered text to validator
           validator: (value) {
-            if (value == null || value.isEmpty) {
-              return 'Este campo es necesario';
+            if (obligatory) {
+              if (value == null || value.isEmpty) {
+                return 'Este campo es necesario';
+              }
             }
             return null;
           },
