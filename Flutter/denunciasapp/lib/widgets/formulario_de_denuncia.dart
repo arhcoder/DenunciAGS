@@ -163,6 +163,8 @@ class _FormularioDenuncianteState extends State<FormularioDenunciante> {
                 label: "INGRESA TU CORREO",
                 onlyText: !_isChecked,
               ),
+              //INSERTAR WIDGET DE LA FIRMA
+
               ElevatedButton(
                 onPressed: () {},
                 child: Text('CONTINUAR'),
