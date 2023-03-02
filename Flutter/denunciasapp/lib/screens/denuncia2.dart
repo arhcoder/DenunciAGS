@@ -31,6 +31,10 @@ class _Denuncia2 extends State<Denuncia2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("IDENTIFICACIÓN"),
+        backgroundColor: Color.fromRGBO(41, 51, 115, 1),
+      ),
       body: Center(
         heightFactor: 1,
         child: SingleChildScrollView(
