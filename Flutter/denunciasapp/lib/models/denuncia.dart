@@ -30,8 +30,8 @@ class Denuncia {
   var entre_calle_hechos2;
   var ubicacion_actual_hechos;
   var narrativa_denuncia;
-  List<String>? testigos = [];
-  List<String>? imagepath = [];
+  var testigos;
+  var imagepath;
   bool anonima;
   String? telefono_denunciante;
   String? correo_denunciante;
@@ -81,7 +81,6 @@ class Denuncia {
       ubicacion_actual_hechos,
       narrativa_denuncia,
       testigos,
-      imagepath,
       anonima,
       telefono_denunciante,
       correo_denunciante) {

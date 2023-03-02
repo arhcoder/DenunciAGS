@@ -12,8 +12,11 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter/material.dart';
 
+import 'denuncia5.dart';
+
 class Denuncia4 extends StatefulWidget {
-  Denuncia reporte;
+  Denuncia reporte = new Denuncia(anonima: false);
+
   Denuncia4({required this.reporte});
   @override
   _Denuncia4State createState() => _Denuncia4State();
@@ -25,9 +28,6 @@ class _Denuncia4State extends State<Denuncia4> {
   String? _selectedOption1;
   String? _selectedOption2;
   List<String> _options2 = [];
-  late TextEditingController controllerTipo = new TextEditingController();
-  late TextEditingController controllerDescripcionTipo =
-      new TextEditingController();
   late TextEditingController controllerFecha = new TextEditingController();
   late TextEditingController controllerHora = new TextEditingController();
   late TextEditingController controllerCalleHechos =
@@ -172,7 +172,7 @@ class _Denuncia4State extends State<Denuncia4> {
               SubTitlesAgs(texto: "TESTIGOS"),
               SizedBox(height: 100.0),
               TextBox(
-                  controller: controllerNarrativaDenuncia,
+                  controller: controllerTestigos,
                   label: "INGRESA LOS NOMBRES DE LOS TESTIGOS"),
 
               Row(
@@ -203,21 +203,33 @@ class _Denuncia4State extends State<Denuncia4> {
 
               ElevatedButton(
                 onPressed: () {
-                  widget.reporte.setSecondDatas(
-                      controllerTipo.text,
-                      controllerDescripcionTipo.text,
-                      controllerFecha.text,
-                      controllerHora.text,
-                      controllerCalleHechos.text,
-                      controllerEntreCalleHechos1.text,
-                      controllerEntreCalleHechos2.text,
-                      controllerUbicacionActualHechos.text,
-                      controllerNarrativaDenuncia.text,
-                      controllerTestigos.text,
-                      controllerImagePath.text,
-                      controllerAnonima.value,
-                      controllerTelefonoDenunciante.text,
-                      controllerCorreoDenunciante.text);
+                  if (_selectedOption1 != null &&
+                      controllerFecha.text != "" &&
+                      controllerHora.text != "" &&
+                      controllerCalleHechos.text != "" &&
+                      controllerUbicacionActualHechos.text != "" &&
+                      controllerTestigos != "") {
+                    widget.reporte.setSecondDatas(
+                        _selectedOption1,
+                        _selectedOption2,
+                        controllerFecha.text,
+                        controllerHora.text,
+                        controllerCalleHechos.text,
+                        controllerEntreCalleHechos1.text,
+                        controllerEntreCalleHechos2.text,
+                        controllerUbicacionActualHechos.text,
+                        controllerNarrativaDenuncia.text,
+                        controllerTestigos.text,
+                        _isChecked,
+                        controllerTelefonoDenunciante.text,
+                        controllerCorreoDenunciante.text);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Denuncia5(),
+                      ),
+                    );
+                  }
                 },
                 child: Text('CONTINUAR'),
               ),

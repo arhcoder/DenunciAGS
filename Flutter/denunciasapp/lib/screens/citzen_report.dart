@@ -216,7 +216,7 @@ class _CitzenReport extends State<CitzenReport> {
                           controllerMunicipio1.text.isNotEmpty &&
                           controllerEstado1.text.isNotEmpty &&
                           controllerNombre2.text.isNotEmpty) {
-                        var report = Denuncia(
+                        Denuncia report = Denuncia(
                             curp1: controllerNombre1.text,
                             nombre1: controllerNombre1.text,
                             sexo1: controllerSexo1.text,
