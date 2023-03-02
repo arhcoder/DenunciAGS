@@ -77,12 +77,6 @@ class _Denuncia3 extends State<Denuncia3> {
 //OBJETO REPORTE
   @override
   void initState() {
-    //Conseguimos los datos del json
-    /*final response =
-        await http.get(Uri.parse('https://ejemplo.com/datos.json'));
-    if (response.statusCode == 200) {
-      _data = jsonDecode(response.body);
-    }*/
     _data = widget.datosINE;
 
     controllerCurp1 = new TextEditingController();
