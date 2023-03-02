@@ -19,6 +19,8 @@ from nltk.chat.util import Chat, reflections
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 
+from INE import 
+
 
 # Cargar los datos
 dataChat = pd.read_csv('entrenamiento.csv')
@@ -91,11 +93,14 @@ def process_image(request):
             with open("ines/imageT.jpg", "wb") as f:
                 f.write(image_t_bytes)
 
+            # Obtener datos personales de la INE:
+
+
             # Return a JSON response with a success message:
-            return JsonResponse({"message": "Bonita INE"})
+            return "Nice"
         else:
             # Return a JSON response with an error message
-            return JsonResponse({"message": "Error: Fea INE u.u"}, status=400)
+            return "Not nice"
 
 
 @csrf_exempt

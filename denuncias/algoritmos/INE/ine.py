@@ -41,7 +41,7 @@ def getDataFromINE(imagePath: str):
 # print(dataOfChisrra)
 
 # Examples:
-''' ines = [
+ines = [
     # "Images/ine.png",
     "Images/aletz.jpeg",
     "Images/chisrra.jpeg",
@@ -52,4 +52,3 @@ def getDataFromINE(imagePath: str):
 for ine in ines:
     print(f"\n{getDataFromINE(ine)}")
 print()
-'''
