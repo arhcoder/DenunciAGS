@@ -9,11 +9,9 @@ import '../screens/citzen_report.dart';
 import '/widgets/custom_textformfield1.dart';
 import '/widgets/subtitlesags.dart';
 import 'package:flutter/material.dart';
-
-import 'package:flutter/material.dart';
-
-import 'package:flutter/material.dart';
-
+import 'dart:convert';
+import 'dart:io';
+import 'package:http/http.dart' as http;
 import 'denuncia5.dart';
 
 class Denuncia4 extends StatefulWidget {
@@ -25,7 +23,6 @@ class Denuncia4 extends StatefulWidget {
 }
 
 class _Denuncia4State extends State<Denuncia4> {
-  late final _image;
   final signatureKey = GlobalKey<SignatureState>();
   bool _isChecked = false;
   List<Widget> _textFields = [];
@@ -213,14 +210,15 @@ class _Denuncia4State extends State<Denuncia4> {
                 ),
               ),
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   if (_selectedOption1 != null &&
                       controllerFecha.text != "" &&
                       controllerHora.text != "" &&
                       controllerCalleHechos.text != "" &&
                       controllerUbicacionActualHechos.text != "" &&
                       controllerTestigos != "") {
-                    getFirma();
+                    ui.Image? image =
+                        await signatureKey.currentState?.getImage();
                     print("Sí se pudo");
                     widget.reporte.setSecondDatas(
                         _selectedOption1,
@@ -236,7 +234,7 @@ class _Denuncia4State extends State<Denuncia4> {
                         _isChecked,
                         controllerTelefonoDenunciante.text,
                         controllerCorreoDenunciante.text,
-                        _image);
+                        image);
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -254,7 +252,12 @@ class _Denuncia4State extends State<Denuncia4> {
     );
   }
 
-  Future<void> getFirma() async {
-    final _image = await signatureKey.currentState!.getImage();
+  Future<void> sendFormData() async {
+    var url = Uri.parse('http://example.com/api/form-data');
+    var request = http.MultipartRequest('POST', url);
+    //var imageBytes = await widget.reporte.image!.readAsBytes();
+    Map<String, dynamic> datos = {"curp": widget.reporte.curp1};
+    
   }
 }
+
