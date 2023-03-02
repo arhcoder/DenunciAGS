@@ -34,8 +34,8 @@ def dataFromCURP(xcurp: str, texts: list):
         }
     '''
 
-    from detect_name import detectName
-    from detect_domicile import detectDomicile
+    from .detect_name import detectName
+    from .detect_domicile import detectDomicile
     from curp import CURP
 
     # Structure of the data:

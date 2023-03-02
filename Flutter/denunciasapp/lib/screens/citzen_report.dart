@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import 'package:denunciasapp/models/denuncia.dart';
-import 'package:denunciasapp/screens/denuncia4.dart';
+import 'denuncia4.dart';
 import 'package:denunciasapp/widgets/subtitlesags.dart';
 
 import '../widgets/text_box.dart';
@@ -240,9 +240,8 @@ class _CitzenReport extends State<CitzenReport> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => Denuncia4(
-                                      denuncia: report,
-                                    )));
+                                builder: (context) =>
+                                    Denuncia4(reporte: report)));
                       } else {
                         print("Lo intenté");
                       }

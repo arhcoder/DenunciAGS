@@ -1,6 +1,6 @@
-from text_reader import textFrom
-from curp_detector import isThisACURP
-from data_extractor import dataFromCURP
+from .text_reader import textFrom
+from .curp_detector import isThisACURP
+from .data_extractor import dataFromCURP
 
 def getDataFromINE(imagePath: str):
 
@@ -41,7 +41,7 @@ def getDataFromINE(imagePath: str):
 # print(dataOfChisrra)
 
 # Examples:
-ines = [
+''' ines = [
     # "Images/ine.png",
     "Images/aletz.jpeg",
     "Images/chisrra.jpeg",
@@ -52,3 +52,4 @@ ines = [
 for ine in ines:
     print(f"\n{getDataFromINE(ine)}")
 print()
+'''
