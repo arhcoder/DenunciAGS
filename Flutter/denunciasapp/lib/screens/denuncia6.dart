@@ -6,8 +6,7 @@ import 'package:http/http.dart' as http;
 import '../widgets/titlesags.dart';
 
 class Denuncia6 extends StatefulWidget {
-  final Map<String, dynamic> respuesta;
-  const Denuncia6({required this.respuesta, super.key});
+  const Denuncia6({super.key});
 
   @override
   _Denuncia6 createState() => _Denuncia6();
@@ -18,11 +17,11 @@ class _Denuncia6 extends State<Denuncia6> {
   @override
   void initState() {
     data = {
-      "nombre": widget.respuesta["nombre"],
-      "curp": widget.respuesta["curp"],
-      "estatus": null,
+      "nombre": "EMILIO LUNA",
+      "curp": "LUPE030230HASRNANMA7",
+      "estatus": "EN ESPERA",
       "respuesta": null,
-      "descripcion": widget.respuesta["descripcion"],
+      "descripcion": "ROBO",
       "numSeguimiento": null,
       "accion_denuncia": null,
       "fecha_hechos": null,
@@ -33,7 +32,7 @@ class _Denuncia6 extends State<Denuncia6> {
       "telefono_denunciante": null,
       "correo_denunciante": null,
       "firma": null,
-      "tipodenuncia": null,
+      "tipodenuncia": "ROBO CON VIOLENCIA",
       "nombredenunciado": null,
       "calle_denuncia": null,
       "entreCalleUno_denuncia": null,
@@ -81,7 +80,7 @@ class _Denuncia6 extends State<Denuncia6> {
                   padding: EdgeInsets.all(16.0),
                   child: Text(
                     "ESTATUS: ${data["estatus"] ?? "No disponible"}",
-                    style: TextStyle(fontSize: 18.0),
+                    style: TextStyle(fontSize: 18.0, color: Colors.orange),
                   ),
                 ),
                 SizedBox(height: 16.0),

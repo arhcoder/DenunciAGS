@@ -1,3 +1,5 @@
+import 'package:denunciasapp/screens/chatbot.dart';
+
 import '/screens/denuncia2.dart';
 import '/widgets/subtitlesags.dart';
 import 'package:flutter/cupertino.dart';
@@ -61,6 +63,13 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => MyApiWidget()));
+        },
+        child: Icon(Icons.chat),
       ),
     );
   }

@@ -42,15 +42,9 @@ class CustomForm1State extends State<CustomForm1> {
               width: 250,
               child: ElevatedButton(
                   style: ElevatedButton.styleFrom(elevation: 20),
-                  onPressed: () async {
-                    String datos = await getData();
-                    Map<String, dynamic> respuestaMap = json.decode(datos);
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => Denuncia6(
-                                  respuesta: respuestaMap,
-                                )));
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Denuncia6()));
                   },
                   child: Text(
                     "CONSULTAR ESTATUS",
@@ -70,7 +64,6 @@ class CustomForm1State extends State<CustomForm1> {
     if (response.statusCode == 200) {
       // El servidor ha respondido correctamente
       // Puedes acceder al contenido de la respuesta en response.body
-      print(response.body[0]);
       return response.body;
     } else {
       // El servidor ha devuelto un error
