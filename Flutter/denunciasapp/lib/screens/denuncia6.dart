@@ -1,53 +1,60 @@
 import 'dart:convert';
 import 'package:denunciasapp/screens/homescreen.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 import '../widgets/titlesags.dart';
 
 class Denuncia6 extends StatefulWidget {
-
-  const Denuncia6({super.key});
+  final Map<String, dynamic> respuesta;
+  const Denuncia6({required this.respuesta, super.key});
 
   @override
   _Denuncia6 createState() => _Denuncia6();
 }
 
 class _Denuncia6 extends State<Denuncia6> {
-  Map<String, dynamic> data = {
-    "nombre": "EMILIO LUNA PEREZ",
-    "curp": "LUPE020330HASNRMA7",
-    "estatus": null,
-    "respuesta": null,
-    "descripcion": "ROBO",
-    "numSeguimiento": null,
-    "accion_denuncia": null,
-    "fecha_hechos": null,
-    "hora_hechos": null,
-    "lugar_hechos": null,
-    "testigos": null,
-    "denuncia_anonima": false,
-    "telefono_denunciante": null,
-    "correo_denunciante": null,
-    "firma": null,
-    "tipodenuncia": null,
-    "nombredenunciado": null,
-    "calle_denuncia": null,
-    "entreCalleUno_denuncia": null,
-    "entreCalleDos_denuncia": null,
-    "municipio_denunciado": null,
-    "codigoPostal_denunciado": null,
-    "colonia_denunciado": null,
-    "calle_denunciado": null,
-    "numExterior_denunciado": null,
-    "numInterior_denunciado": null,
-    "municipio_denunciador": null,
-    "codigoPostal_denunciador": null,
-    "colonia_denunciador": null,
-    "calle_denunciador": null,
-    "numExterior_denunciador": null,
-    "numInterior_denunciador": null,
-    "denuncia_images": []
-  };
+  late Map<String, dynamic> data;
+  @override
+  void initState() {
+    data = {
+      "nombre": widget.respuesta["nombre"],
+      "curp": widget.respuesta["curp"],
+      "estatus": null,
+      "respuesta": null,
+      "descripcion": widget.respuesta["descripcion"],
+      "numSeguimiento": null,
+      "accion_denuncia": null,
+      "fecha_hechos": null,
+      "hora_hechos": null,
+      "lugar_hechos": null,
+      "testigos": null,
+      "denuncia_anonima": false,
+      "telefono_denunciante": null,
+      "correo_denunciante": null,
+      "firma": null,
+      "tipodenuncia": null,
+      "nombredenunciado": null,
+      "calle_denuncia": null,
+      "entreCalleUno_denuncia": null,
+      "entreCalleDos_denuncia": null,
+      "municipio_denunciado": null,
+      "codigoPostal_denunciado": null,
+      "colonia_denunciado": null,
+      "calle_denunciado": null,
+      "numExterior_denunciado": null,
+      "numInterior_denunciado": null,
+      "municipio_denunciador": null,
+      "codigoPostal_denunciador": null,
+      "colonia_denunciador": null,
+      "calle_denunciador": null,
+      "numExterior_denunciador": null,
+      "numInterior_denunciador": null,
+      "denuncia_images": []
+    };
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +65,9 @@ class _Denuncia6 extends State<Denuncia6> {
         ),
         body: Card(
           child: ListTile(
-            title: TitlesAgs(texto:"DENUNCIA POR: ${data["tipodenuncia"]}" ?? "NO APARECE DELITO"),
+            title: TitlesAgs(
+                texto: "DENUNCIA POR: ${data["tipodenuncia"]}" ??
+                    "NO APARECE DELITO"),
             subtitle: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -157,20 +166,22 @@ class _Denuncia6 extends State<Denuncia6> {
                   height: 20,
                 ),
                 Container(
-                height: 50,
-                width: 150,
-                child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(elevation: 20),
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => HomeScreen()));
-                    },
-                    child: Text(
-                      "REGRESAR",
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-                    )),
-              ),
+                  height: 50,
+                  width: 150,
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(elevation: 20),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => HomeScreen()));
+                      },
+                      child: Text(
+                        "REGRESAR",
+                        style: TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.bold),
+                      )),
+                ),
               ],
             ),
           ),

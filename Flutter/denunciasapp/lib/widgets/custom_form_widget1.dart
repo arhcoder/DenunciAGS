@@ -1,5 +1,9 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
 
+import 'package:denunciasapp/widgets/widgets.dart';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import '../screens/denuncia6.dart';
 import '../screens/homescreen.dart';
 
 // Defining a custom Form widget.
@@ -13,23 +17,18 @@ class CustomForm1 extends StatefulWidget {
 
 // Defining a corresponding State class.
 class CustomForm1State extends State<CustomForm1> {
+  final _controller = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-
+  late String llave;
   Widget build(BuildContext context) {
     // Building a Form widget using the _formKey created above.
     return Form(
       key: _formKey,
       child: Column(
         children: <Widget>[
-          TextFormField(
-            // passing the user entered text to validator
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Ingrese un valor valido';
-              }
-              return null;
-            },
-          ),
+          TextBox(
+              controller: _controller,
+              label: "INGRESE UN NUMERO DE SEGUIMIENTO"),
           SizedBox(
             height: 40,
           ),
@@ -38,31 +37,45 @@ class CustomForm1State extends State<CustomForm1> {
           Container(
             height: 50,
             width: 150,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(elevation: 20),
-              onPressed: () {
-                // Validate returns true if the form is valid, or false otherwise.
-                if (_formKey.currentState!.validate()) {
-                  // If the form is valid, display a snackbar. In the real world,
-                  // you'd often call a server or save the information in a database.
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Processing Data')),
-                  );
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              HomeScreen())); //aquí va la pantalla de estado de la denuncia
-                }
-              },
-              child: const Text(
-                "CONSULTAR",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-              ),
+            child: Container(
+              height: 60,
+              width: 250,
+              child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(elevation: 20),
+                  onPressed: () async {
+                    String datos = await getData();
+                    Map<String, dynamic> respuestaMap = json.decode(datos);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Denuncia6(
+                                  respuesta: respuestaMap,
+                                )));
+                  },
+                  child: Text(
+                    "CONSULTAR ESTATUS",
+                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                  )),
             ),
           ),
         ],
       ),
     );
+  }
+
+  Future<String> getData() async {
+    final llave = _controller.text;
+    final response = await http.get(Uri.parse(
+        'https://emilioenlaluna-reimagined-space-59q6wpv4prqh4jrj-8000.preview.app.github.dev/seguimiento/${llave}/'));
+    if (response.statusCode == 200) {
+      // El servidor ha respondido correctamente
+      // Puedes acceder al contenido de la respuesta en response.body
+      print(response.body[0]);
+      return response.body;
+    } else {
+      // El servidor ha devuelto un error
+      print('Error ${response.statusCode}: ${response.reasonPhrase}');
+    }
+    return "";
   }
 }

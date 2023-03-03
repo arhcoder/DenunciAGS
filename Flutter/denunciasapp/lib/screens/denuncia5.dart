@@ -1,13 +1,14 @@
 import 'package:denunciasapp/models/denuncia.dart';
 import 'package:denunciasapp/screens/denuncia6.dart';
 import 'package:flutter/material.dart';
-
+import 'package:http/http.dart' as http;
 import '../widgets/custom_form_widget1.dart';
 import '../widgets/subtitlesags.dart';
 import '../widgets/titlesags.dart';
 
 class Denuncia5 extends StatelessWidget {
-  const Denuncia5({Key? key}) : super(key: key);
+  final llave;
+  const Denuncia5({required this.llave, Key? key}) : super(key: key);
 //AQUÍ TENEMOS QUE HACER EL REQUEST DEL NUMERO DE SEGUIMIENTO
   @override
   Widget build(BuildContext context) {
@@ -31,6 +32,7 @@ class Denuncia5 extends StatelessWidget {
                   height: 40,
                 ),
                 //AQUÍ VA EL NUMERO DE SEGUIMIENTO
+
                 SizedBox(
                   height: 40,
                 ),
@@ -40,20 +42,24 @@ class Denuncia5 extends StatelessWidget {
                 ),
 
                 Container(
-                height: 60,
-                width: 250,
-                child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(elevation: 20),
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Denuncia6()));
-                    },
-                    child: Text(
-                      "CONSULTAR ESTATUS",
-                      style:
-                          TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
-                    )),
-              ),
+                  height: 60,
+                  width: 250,
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(elevation: 20),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Denuncia6(
+                                      respuesta: llave,
+                                    )));
+                      },
+                      child: Text(
+                        "CONSULTAR ESTATUS",
+                        style: TextStyle(
+                            fontSize: 17, fontWeight: FontWeight.bold),
+                      )),
+                ),
                 SizedBox(
                   height: 100,
                 ),
@@ -77,5 +83,20 @@ class Denuncia5 extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<String> getData() async {
+    final response = await http.get(Uri.parse(
+        'https://emilioenlaluna-reimagined-space-59q6wpv4prqh4jrj-8000.preview.app.github.dev/seguimiento/${llave}/'));
+    if (response.statusCode == 200) {
+      // El servidor ha respondido correctamente
+      // Puedes acceder al contenido de la respuesta en response.body
+      print(response.body);
+      return response.body;
+    } else {
+      // El servidor ha devuelto un error
+      print('Error ${response.statusCode}: ${response.reasonPhrase}');
+    }
+    return "";
   }
 }
