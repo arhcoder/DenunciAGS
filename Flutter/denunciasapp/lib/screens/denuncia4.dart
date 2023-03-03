@@ -339,13 +339,14 @@ class _Denuncia4State extends State<Denuncia4> {
 
     final headers = {"Content-Type": "multipart/form-data"};
     final cuerpo =
-    {   "nombre": widget.reporte.nombre1,
-        "curp": widget.reporte.curp1
+    {
+        "nombre": "" + widget.reporte.nombre1.toString(),
+        "curp": ""+ widget.reporte.curp1.toString()
     };
 
     final request = http.MultipartRequest("POST", Uri.parse(url));
-    request.header.addAll(headers);
-    request.fields.addAll(cuerpo)
+    request.headers.addAll(headers);
+    request.fields.addAll(cuerpo);
     
     respuesta = await http.Response.fromStream(await request.send());
     // respuesta = await http.post(Uri.parse(url), headers: headers, body: json.encode(cuerpo));
