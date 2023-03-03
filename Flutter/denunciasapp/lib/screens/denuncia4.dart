@@ -16,7 +16,7 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'denuncia5.dart';
 
-import 'dart:convert'
+import 'dart:convert';
 
 class Denuncia4 extends StatefulWidget {
   Denuncia reporte = new Denuncia(anonima: false);
@@ -277,7 +277,7 @@ class _Denuncia4State extends State<Denuncia4> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => Denuncia5(),
+                          builder: (context) => Denuncia5(llave: "",),
                         ),
                       );
                     }
