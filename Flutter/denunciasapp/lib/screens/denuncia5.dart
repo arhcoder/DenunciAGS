@@ -50,9 +50,7 @@ class Denuncia5 extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => Denuncia6(
-                                      respuesta: llave,
-                                    )));
+                                builder: (context) => Denuncia6()));
                       },
                       child: Text(
                         "CONSULTAR ESTATUS",
