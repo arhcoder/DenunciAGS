@@ -54,6 +54,13 @@ MIDDLEWARE = [
      "corsheaders.middleware.CorsMiddleware",
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_PARSER_CLASSES': (
+        'rest_framework.parsers.FormParser',
+        'rest_framework.parsers.MultiPartParser'
+     )
+ }
+
 ROOT_URLCONF = 'denuncias.urls'
 
 TEMPLATES = [
@@ -151,7 +158,9 @@ CORS_ALLOW_METHODS = [
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:44499',
+    'http://localhost:55982',
 ] # If this is used, then not need to use `CORS_ALLOW_ALL_ORIGINS = True`
 CORS_ALLOWED_ORIGIN_REGEXES = [
     'http://localhost:44499',
+    'http://localhost:55982',
 ]

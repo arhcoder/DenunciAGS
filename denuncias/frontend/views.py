@@ -132,3 +132,6 @@ class DomicilioRetrieveUpdateAPIView(generics.RetrieveUpdateAPIView):
 class DomicilioDestroyAPIView(generics.DestroyAPIView):
     lookup_field='id'
     queryset=domicilio.objects.all()    
+
+
+#
