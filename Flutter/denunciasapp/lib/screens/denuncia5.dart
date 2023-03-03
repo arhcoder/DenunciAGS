@@ -32,7 +32,10 @@ class Denuncia5 extends StatelessWidget {
                   height: 40,
                 ),
                 //AQUÍ VA EL NUMERO DE SEGUIMIENTO
-
+                Text(
+                  "3B6C0DF0",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
                 SizedBox(
                   height: 40,
                 ),
