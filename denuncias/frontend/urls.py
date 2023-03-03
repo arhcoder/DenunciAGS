@@ -36,4 +36,8 @@ urlpatterns = [
     path('domicilio/create/', views.DomicilioCreateAPIView.as_view(), name="domicilio_create"),
     path('domicilio/update/<int:id>/', views.DomicilioRetrieveUpdateAPIView.as_view(), name="domicilio_update"),
     path('domicilio/delete/<int:id>/', views.DomicilioDestroyAPIView.as_view(),name="domicilio_delete"),
+    
+    #seguimiento
+    path('seguimiento/<str:numSeguimiento>/', views.SeguimientoSearchView.as_view(),name="seguimiento"),
+    
     ]

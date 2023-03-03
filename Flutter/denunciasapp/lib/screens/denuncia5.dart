@@ -1,4 +1,5 @@
 import 'package:denunciasapp/models/denuncia.dart';
+import 'package:denunciasapp/screens/denuncia6.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/custom_form_widget1.dart';
@@ -39,17 +40,20 @@ class Denuncia5 extends StatelessWidget {
                 ),
 
                 Container(
-                  height: 100,
-                  width: 200,
-                  child: ElevatedButton(
+                height: 60,
+                width: 250,
+                child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(elevation: 20),
                     onPressed: () {
-                      //SI LO PRESIONA, SE VA A CONSULTAR EL ESTADO DE LA DENUNCIA
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Denuncia6()));
                     },
                     child: Text(
-                      "CONSULTAR ESTADO",
-                    ),
-                  ),
-                ),
+                      "CONSULTAR ESTATUS",
+                      style:
+                          TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                    )),
+              ),
                 SizedBox(
                   height: 100,
                 ),
