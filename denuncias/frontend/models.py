@@ -13,9 +13,7 @@ class estatusdenuncia(models.Model):
 
 
 class denuncia(models.Model):
-    nombre = models.CharField(max_length=45)
-    apellidoPaterno = models.CharField(max_length=45)
-    apellidoMaterno = models.CharField(max_length=45)
+    nombre = models.CharField(max_length=100)
     curp = models.CharField(max_length=45)
     estatus=models.ForeignKey(estatusdenuncia, on_delete=models.CASCADE,null=True)
     respuesta = models.CharField(max_length=300,null=True)
@@ -29,7 +27,27 @@ class denuncia(models.Model):
     denuncia_anonima=models.BooleanField(default=False,null=True)
     telefono_denunciante=models.CharField(max_length=20,null=True)
     correo_denunciante=models.CharField(max_length=200,null=True)
-    firma=models.ImageField(upload_to="firmas",null=True)    
+    firma=models.ImageField(upload_to="firmas",null=True)
+    tipodenuncia=models.CharField(max_length=70,null=True)
+    nombredenunciado = models.CharField(max_length=100, null=True)
+    #denuncia
+    calle_denuncia = models.CharField(max_length=100, null=True)
+    entreCalleUno_denuncia = models.CharField(max_length=100, null=True)
+    entreCalleDos_denuncia = models.CharField(max_length=100, null=True)
+    #domicilio_denunciado
+    municipio_denunciado = models.TextField(max_length=45, null=True)
+    codigoPostal_denunciado = models.TextField(max_length=45, null=True)
+    colonia_denunciado = models.TextField(max_length=45, null=True)
+    calle_denunciado = models.TextField(max_length=45, null=True)
+    numExterior_denunciado = models.TextField(max_length=10, null=True)
+    numInterior_denunciado = models.TextField(max_length=45, null=True)
+     #domicilio_denunciador
+    municipio_denunciador = models.TextField(max_length=45, null=True)
+    codigoPostal_denunciador = models.TextField(max_length=45, null=True)
+    colonia_denunciador = models.TextField(max_length=45, null=True)
+    calle_denunciador = models.TextField(max_length=45, null=True)
+    numExterior_denunciador = models.TextField(max_length=10, null=True)
+    numInterior_denunciador = models.TextField(max_length=45, null=True) 
     def __str__(self): 
         return self.nombre+self.numSeguimiento
 
