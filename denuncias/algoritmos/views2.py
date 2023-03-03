@@ -35,11 +35,11 @@ def chatbot_view(request):
         if my_var:
             print(my_var)
             pairs = [
-            ['Hola|Hola!|Hola ¿qué tal?', ['Hola, ¿cómo estás?', 'Hola!']],
-            ['¿Cómo estás?|¿Cómo te sientes?', ['Estoy bien, gracias. ¿Y tú?', 'Me siento muy bien, gracias']],
-            ['¿Cuál es tu nombre?|¿Cómo te llamas?', ['Me llamo Aguascalientes Security Bot, ¿y tú?', 'Mi nombre es Aguascalientes Security Bot']],
-            ['Adiós|Hasta luego|Chao|Hasta pronto', ['Adiós, ¡que tengas un buen día!', 'Hasta luego']],
-            ['ayuda|apoyo|necesidad', ['Estamos para ayudarte', 'Reporta tus denuncias al 911','La policia cibernetica te protege en linea']],
+            ['Hola|Hola!|Hola ¿qué tal?|hola|que tal', ['Hola, ¿cómo estás?', 'Hola!']],
+            ['¿Cómo estás?|¿Cómo te sientes?|saludos', ['Estoy bien, gracias. ¿Y tú?', 'Me siento muy bien, gracias']],
+            ['¿Cuál es tu nombre?|¿Cómo te llamas?|dime tu nombre|quien eres', ['Me llamo Aguascalientes Security Bot, ¿y tú?', 'Mi nombre es Aguascalientes Security Bot']],
+            ['Adiós|Hasta luego|Chao|Hasta pronto|adios|chao', ['Adiós, ¡que tengas un buen día!', 'Hasta luego']],
+            ['ayuda|apoyo|necesidad|emergencia', ['Estamos para ayudarte', 'Reporta tus denuncias al 911','La policia cibernetica te protege en linea']],
             ['contacto|información|directorio', ['Contactanos al 911','Visita nuestra redes sociales para mas informacion', 'Visita nuestra pagina web para ver el direcotorio ']],
             ['denuncia|delito|reportes', ['Denuncia en nuestra aplicacion online','En caso de emergencia contactate al 911', 'En la linea del 911 te ayudamos']],
             ]

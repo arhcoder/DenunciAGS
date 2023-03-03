@@ -86,7 +86,7 @@ class DenunciaListSerializer(serializers.ModelSerializer):
         return reverse('denuncia_detail', args=(obj.pk,))
 
 class DenunciaDetailSerializer(serializers.ModelSerializer):
-    denuncia_images = ImageSerializer(many=True,required=False)
+    
     class Meta:
         model = denuncia
         fields = [
@@ -125,7 +125,7 @@ class DenunciaDetailSerializer(serializers.ModelSerializer):
     'calle_denunciador',
     'numExterior_denunciador',
     'numInterior_denunciador',
-    'denuncia_images'
+   
         ]
 
 #

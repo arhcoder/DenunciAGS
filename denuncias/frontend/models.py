@@ -17,7 +17,7 @@ class denuncia(models.Model):
     curp = models.CharField(max_length=45)
     estatus=models.ForeignKey(estatusdenuncia, on_delete=models.CASCADE,null=True)
     respuesta = models.CharField(max_length=300,null=True)
-    descripcion=models.CharField(max_length=900)
+    descripcion=models.CharField(max_length=900,null=True)
     numSeguimiento = models.CharField(max_length=20,null=True)
     accion_denuncia=models.CharField(max_length=50,null=True)
     fecha_hechos=models.CharField(max_length=20,null=True)
@@ -27,7 +27,7 @@ class denuncia(models.Model):
     denuncia_anonima=models.BooleanField(default=False,null=True)
     telefono_denunciante=models.CharField(max_length=20,null=True)
     correo_denunciante=models.CharField(max_length=200,null=True)
-    firma=models.ImageField(upload_to="firmas",null=True)
+    firma=models.TextField(null=True)
     tipodenuncia=models.CharField(max_length=70,null=True)
     nombredenunciado = models.CharField(max_length=100, null=True)
     #denuncia
