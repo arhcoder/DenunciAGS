@@ -25,6 +25,9 @@ from django.http import HttpResponse
 from nltk.chat.util import Chat, reflections
 from django.views.decorators.csrf import csrf_exempt
 
+nltk.download('punkt')
+nltk.download('stopwords')
+
 @csrf_exempt
 def chatbot_view(request):
     if request.method == 'POST':
