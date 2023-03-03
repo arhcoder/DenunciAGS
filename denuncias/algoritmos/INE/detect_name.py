@@ -65,5 +65,11 @@ def detectName(curpobj, texts: list):
     if curpobj.nombre_valido(str(texts[word_index_for_name+3] + "" + texts[word_index_for_name+4])):
         # print(f"Nombre: {texts[word_index_for_name+3]} {texts[word_index_for_name+4]}")
         complete_name["names"] = str(texts[word_index_for_name+3]) + " " + str(texts[word_index_for_name+4])
+
+    # HOT FIX:
+    # SI EL NOMBRE TIENE LA PALABRA "DOMICILIO" LA REMUEVE:
+    nombre = str(complete_name["names"])
+    nombre.replace("DOMICILIO", "")
+    complete_name["names"] = str(nombre)
     
     return complete_name
