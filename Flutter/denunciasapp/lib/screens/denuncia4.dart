@@ -365,7 +365,7 @@ class _Denuncia4State extends State<Denuncia4> {
         "colonia_denunciador": "" + widget.reporte.colonia1.toString(),
         "calle_denunciador": "" + widget.reporte.calle1.toString(),
         "numExterior_denunciador": "" + widget.reporte.noexterior1.toString(),
-        "numInterior_denunciador": "" + widget.reporte.nointerior.toString()1
+        "numInterior_denunciador": "" + widget.reporte.nointerior1.toString(),
     };
 
     final request = http.MultipartRequest("POST", Uri.parse(url));
