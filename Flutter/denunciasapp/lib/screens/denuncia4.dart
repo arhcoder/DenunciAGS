@@ -16,6 +16,8 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'denuncia5.dart';
 
+import 'dart:convert'
+
 class Denuncia4 extends StatefulWidget {
   Denuncia reporte = new Denuncia(anonima: false);
 
@@ -275,7 +277,7 @@ class _Denuncia4State extends State<Denuncia4> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => Denuncia5(llave: ""),
+                          builder: (context) => Denuncia5(),
                         ),
                       );
                     }
@@ -303,10 +305,7 @@ class _Denuncia4State extends State<Denuncia4> {
     final Uint8List? bytes = imageData?.buffer.asUint8List();
     final String encodedImage = base64Encode(bytes!);
 
-    Map<String, dynamic> cuerpo = {
-      "nombre": widget.reporte.nombre1,
-      "curp": widget.reporte.curp1,
-    };
+    
 
     /*
     Map<String, dynamic> cuerpo = {
@@ -338,9 +337,15 @@ class _Denuncia4State extends State<Denuncia4> {
       "numInterior_denunciador": widget.reporte.nointerior1,
     };*/
 
-    respuesta = await http.post(Uri.parse(url), body: json.encode(cuerpo));
+    final headers = {"Content-Type": "application/json"};
+    final cuerpo =
+    {   "nombre": widget.reporte.nombre1,
+        "curp": widget.reporte.curp1
+    };
 
-    if (respuesta.statusCode == 200) {
+    respuesta = await http.post(Uri.parse(url), headers: headers, body: json.encode(cuerpo));
+
+    if (respuesta.statusCode == 200 || respuesta.statusCode == 201) {
       print("Se hizo el envio de forma adecuada");
       print(respuesta.body);
     } else {
