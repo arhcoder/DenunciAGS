@@ -3,6 +3,17 @@ from rest_framework import generics
 from .serializers import *
 from .models import *
 
+from .serializers import DenunciaDetailSerializer
+
+class SeguimientoSearchView(generics.ListAPIView):
+    serializer_class = DenunciaDetailSerializer
+
+    def get_queryset(self):
+        query = self.request.query_params.get('numSeguimiento')
+        if query:
+            return denuncia.objects.filter(numSeguimiento=query)
+        else:
+            return denuncia.objects.all()
 #
 # ESTATUS DENUNCIAS
 #

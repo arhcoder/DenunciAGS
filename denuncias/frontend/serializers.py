@@ -80,6 +80,7 @@ class DenunciaListSerializer(serializers.ModelSerializer):
     'calle_denunciador',
     'numExterior_denunciador',
     'numInterior_denunciador',
+    'absolute_url'
         ]
     def get_absolute_url(self, obj):
         return reverse('denuncia_detail', args=(obj.pk,))
