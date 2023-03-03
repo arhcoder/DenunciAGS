@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:denunciasapp/models/denuncia.dart';
 import 'dart:ui' as ui;
 import 'package:denunciasapp/widgets/MySignature.dart';
@@ -253,9 +255,52 @@ class _Denuncia4State extends State<Denuncia4> {
   }
 
   Future<void> sendFormData() async {
-    var url = Uri.parse('http://example.com/api/form-data');
-    var request = http.MultipartRequest('POST', url);
-    //var imageBytes = await widget.reporte.image!.readAsBytes();
-    Map<String, dynamic> datos = {"curp": widget.reporte.curp1};
+    String url =
+        'https://emilioenlaluna-reimagined-space-59q6wpv4prqh4jrj-8000.preview.app.github.dev/create/';
+
+    http.Response respuesta;
+
+    final ByteData? imageData = await widget.reporte.image?.toByteData();
+    final Uint8List? bytes = imageData?.buffer.asUint8List();
+    final String encodedImage = base64Encode(bytes!);
+
+    Map<String, dynamic> cuerpo = {
+      "nombre": widget.reporte.nombre1,
+      "curp": widget.reporte.curp1,
+      "descripcion": widget.reporte.narrativa_denuncia,
+      "tipodenuncia": widget.reporte.descripciontipo,
+      "accion_denuncia": widget.reporte.descripciontipo,
+      "fecha_hechos": widget.reporte.fecha,
+      "hora_hechos": widget.reporte.hora,
+      "lugar_hechos": widget.reporte.ubicacion_actual_hechos,
+      "testigos": widget.reporte.testigos,
+      "denuncia_anonima": widget.reporte.anonima,
+      "telefono_denunciante": widget.reporte.telefono_denunciante,
+      "correo_denunciante": widget.reporte.correo_denunciante,
+      "firma": encodedImage,
+      "nombredenunciado": widget.reporte.nombre2,
+      "entreCalleUno_denuncia": widget.reporte.entre_calle_hechos1,
+      "entreCalleDos_denuncia": widget.reporte.entre_calle_hechos2,
+      "municipio_denunciado": widget.reporte.municipio2,
+      "colonia_denunciado": widget.reporte.colonia2,
+      "calle_denunciado": widget.reporte.calle2,
+      "numExterior_denunciado": widget.reporte.noexterior2,
+      "numInterior_denunciado": widget.reporte.nointerior1,
+      "municipio_denunciador": widget.reporte.municipio1,
+      "colonia_denunciador": widget.reporte.colonia1,
+      "calle_denunciador": widget.reporte.calle1,
+      "numExterior_denunciador": widget.reporte.noexterior1,
+      "numInterior_denunciador": widget.reporte.nointerior1,
+    };
+
+    respuesta = await http.post(Uri.parse(url), body: json.encode(cuerpo));
+
+    if (respuesta.statusCode == 200) {
+      print("Se hizo el envio de forma adecuada");
+      print(respuesta.body);
+    } else {
+      // La petición falló
+      print("Fallo el envio ${respuesta.statusCode}");
+    }
   }
 }
