@@ -341,7 +341,31 @@ class _Denuncia4State extends State<Denuncia4> {
     final cuerpo =
     {
         "nombre": "" + widget.reporte.nombre1.toString(),
-        "curp": ""+ widget.reporte.curp1.toString()
+        "curp": ""+ widget.reporte.curp1.toString(),
+        "descripcion": "" + widget.reporte.narrativa_denuncia.toString(),
+        "tipodenuncia": "" + widget.reporte.descripciontipo.toString(),
+        "accion_denuncia": "" + widget.reporte.descripciontipo.toString(),
+        "fecha_hechos": "" + widget.reporte.fecha.toString(),
+        "hora_hechos": "" + widget.reporte.hora.toString(),
+        "lugar_hechos": "" + widget.reporte.ubicacion_actual_hechos.toString(),
+        "testigos": "" + widget.reporte.testigos.toString(),
+        "denuncia_anonima": "" + widget.reporte.anonima.toString(),
+        "telefono_denunciante": "" + widget.reporte.telefono_denunciante.toString(),
+        "correo_denunciante": "" + widget.reporte.correo_denunciante.toString(),
+        "firma": "" + encodedImage.toString(),
+        "nombredenunciado": "" + widget.reporte.nombre2.toString(),
+        "entreCalleUno_denuncia": "" + widget.reporte.entre_calle_hechos1.toString(),
+        "entreCalleDos_denuncia": "" + widget.reporte.entre_calle_hechos2.toString(),
+        "municipio_denunciado": "" + widget.reporte.municipio2.toString(),
+        "colonia_denunciado": "" + widget.reporte.colonia2.toString(),
+        "calle_denunciado": "" + widget.reporte.calle2.toString(),
+        "numExterior_denunciado": "" + widget.reporte.noexterior2.toString(),
+        "numInterior_denunciado": "" + widget.reporte.nointerior1.toString(),
+        "municipio_denunciador": "" + widget.reporte.municipio1.toString(),
+        "colonia_denunciador": "" + widget.reporte.colonia1.toString(),
+        "calle_denunciador": "" + widget.reporte.calle1.toString(),
+        "numExterior_denunciador": "" + widget.reporte.noexterior1.toString(),
+        "numInterior_denunciador": "" + widget.reporte.nointerior.toString()1
     };
 
     final request = http.MultipartRequest("POST", Uri.parse(url));
