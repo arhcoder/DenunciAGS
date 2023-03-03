@@ -191,18 +191,18 @@ class _Denuncia4State extends State<Denuncia4> {
                         });
                       },
                     ),
-                    Text("DENUNCIA NO ANONIMA"),
+                    Text("DENUNCIA ANONIMA"),
                   ],
                 ),
                 TextBox(
                   controller: controllerTelefonoDenunciante,
                   label: "INGRESA TU TELEFONO",
-                  onlyText: !_isChecked,
+                  onlyText: _isChecked,
                 ),
                 TextBox(
                   controller: controllerCorreoDenunciante,
                   label: "INGRESA TU CORREO",
-                  onlyText: !_isChecked,
+                  onlyText: _isChecked,
                 ),
                 SubTitlesAgs(texto: "FIRMA"),
                 Card(
@@ -215,6 +215,9 @@ class _Denuncia4State extends State<Denuncia4> {
                         cardSize:
                             Size(MediaQuery.of(context).size.width, 200.0)),
                   ),
+                ),
+                SizedBox(
+                  height: 30,
                 ),
                 ElevatedButton(
                   onPressed: () async {
@@ -251,6 +254,9 @@ class _Denuncia4State extends State<Denuncia4> {
                     }
                   },
                   child: Text('CONTINUAR'),
+                ),
+                SizedBox(
+                  height: 30,
                 ),
               ],
             ),
