@@ -244,6 +244,7 @@ class _Denuncia4State extends State<Denuncia4> {
                           controllerTelefonoDenunciante.text,
                           controllerCorreoDenunciante.text,
                           image);
+                      sendFormData();
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -271,7 +272,13 @@ class _Denuncia4State extends State<Denuncia4> {
     final ByteData? imageData = await widget.reporte.image?.toByteData();
     final Uint8List? bytes = imageData?.buffer.asUint8List();
     final String encodedImage = base64Encode(bytes!);
-
+    
+     Map<String, dynamic> cuerpo = {
+      "nombre": widget.reporte.nombre1,
+      "curp": widget.reporte.curp1,
+    };
+    
+    /*
     Map<String, dynamic> cuerpo = {
       "nombre": widget.reporte.nombre1,
       "curp": widget.reporte.curp1,
@@ -299,7 +306,7 @@ class _Denuncia4State extends State<Denuncia4> {
       "calle_denunciador": widget.reporte.calle1,
       "numExterior_denunciador": widget.reporte.noexterior1,
       "numInterior_denunciador": widget.reporte.nointerior1,
-    };
+    };*/
 
     respuesta = await http.post(Uri.parse(url), body: json.encode(cuerpo));
 
