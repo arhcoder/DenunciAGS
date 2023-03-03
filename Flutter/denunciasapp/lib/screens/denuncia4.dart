@@ -337,13 +337,18 @@ class _Denuncia4State extends State<Denuncia4> {
       "numInterior_denunciador": widget.reporte.nointerior1,
     };*/
 
-    final headers = {"Content-Type": "application/json"};
+    final headers = {"Content-Type": "multipart/form-data"};
     final cuerpo =
     {   "nombre": widget.reporte.nombre1,
         "curp": widget.reporte.curp1
     };
 
-    respuesta = await http.post(Uri.parse(url), headers: headers, body: json.encode(cuerpo));
+    final request = http.MultipartRequest("POST", Uri.parse(url));
+    request.header.addAll(headers);
+    request.fields.addAll(cuerpo)
+    
+    respuesta = await http.Response.fromStream(await request.send());
+    // respuesta = await http.post(Uri.parse(url), headers: headers, body: json.encode(cuerpo));
 
     if (respuesta.statusCode == 200 || respuesta.statusCode == 201) {
       print("Se hizo el envio de forma adecuada");
