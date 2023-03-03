@@ -12,49 +12,63 @@ class Denuncia5 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("BIENVENIDO"),
+        title: Text("ULTIMOS PASOS"),
         backgroundColor: Color.fromARGB(255, 44, 41, 115),
       ),
       body: SingleChildScrollView(
         child: Center(
           heightFactor: 1,
-          child: Column(
-            children: [
-              const Image(
-                image: AssetImage('assets/ags.png'),
-                width: 350,
-                height: 150,
-              ),
-
-              TitlesAgs(
-                texto: "SELECCIONE EL TIPO DE TRAMITE QUE DESEA HACER",
-              ),
-              SizedBox(height: 50),
-              SubTitlesAgs(texto: "REALIZAR DENUNCIA"),
-              SizedBox(height: 50),
-              Container(
-                child: ElevatedButton(
-                    onPressed: () {
-                      /*
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Consulta()),);*/
-                    },
-                    child: Text("INICIAR")),
-              ),
-              //SECCIÓN DE SEGUIMIENTO DE DENUNCIA
-              SizedBox(height: 50),
-              SubTitlesAgs(texto: "CONSULTAR UNA DENUNCIA"),
-              SizedBox(height: 50),
-
-              Padding(
-                padding: EdgeInsets.only(left: 100, right: 100),
-                child: Column(
-                  children: [
-                    CustomForm1(),
-                  ],
+          child: Padding(
+            padding: const EdgeInsets.only(left: 30, right: 20),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 20,
                 ),
-              ),
-            ],
+                const TitlesAgs(texto: "GRACIAS POR REALIZAR TU DENUNCIA"),
+                SizedBox(
+                  height: 40,
+                ),
+                //AQUÍ VA EL NUMERO DE SEGUIMIENTO
+                SizedBox(
+                  height: 40,
+                ),
+                SubTitlesAgs(texto: "ESTE ES TU NUMERO DE SEGUIMIENTO"),
+                SizedBox(
+                  height: 50,
+                ),
+
+                Container(
+                  height: 100,
+                  width: 200,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      //SI LO PRESIONA, SE VA A CONSULTAR EL ESTADO DE LA DENUNCIA
+                    },
+                    child: Text(
+                      "CONSULTAR ESTADO",
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 100,
+                ),
+                Text(
+                  "FAVOR DE LLAMAR AL 449-####### O ACUDIR DIRECTAMENTE A LAS OFICINASPARA CONFIRMAR SU DENUNCIA CON EL NUMERO DE SEGUIMIENTO",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                Text(
+                  "SI ESTE PASO NO SE REALIZA DENTRO DE LOS PROXIMOS 15 DÍAS, SU DENUNCIA SERÁ DESCARTADA Y TENDRÁ QUE REALIZARLA DE NUEVO",
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.red),
+                ),
+              ],
+            ),
           ),
         ),
       ),
