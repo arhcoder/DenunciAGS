@@ -148,33 +148,38 @@ class _Denuncia4State extends State<Denuncia4> {
                 ),
                 SizedBox(height: 20.0),
                 TextBox(
-                    controller: controllerFecha, label: "FECHA DE LOS HECHOS"),
+                    controller: controllerFecha, label: "FECHA DE LOS HECHOS" , defaultText: "29/02/2021",), //Sólo por motivos de pruebas defaultText
                 SizedBox(height: 20.0),
                 TextBox(
                     controller: controllerHora,
-                    label: "HORA DE LOS HECHOS (OPCIONAL)"),
+                    label: "HORA DE LOS HECHOS (OPCIONAL)",
+                    defaultText: "25:61",),  //Sólo por motivos de pruebas defaultText
                 SizedBox(height: 50.0),
                 SubTitlesAgs(texto: "LUGAR DONDE SUCEDIERON LOS HECHOS"),
                 SizedBox(height: 50.0),
-                TextBox(controller: controllerCalleHechos, label: "CALLE"),
+                TextBox(controller: controllerCalleHechos, label: "CALLE", defaultText: " ll Milione,",), //Sólo por motivos de pruebas defaultText
                 SizedBox(height: 20.0),
                 TextBox(
                     controller: controllerEntreCalleHechos1,
-                    label: "ENTRE CALLE 1"),
+                    label: "ENTRE CALLE 1",
+                    defaultText: "Europa medieval ",),  //Sólo por motivos de pruebas defaultText
                 SizedBox(height: 20.0),
                 TextBox(
                     controller: controllerEntreCalleHechos2,
-                    label: "ENTRE CALLE 2"),
+                    label: "ENTRE CALLE 2",
+                    defaultText: "Asia Central",), //Sólo por motivos de pruebas defaultText
                 SizedBox(height: 20.0),
                 TextBox(
                     controller: controllerUbicacionActualHechos,
-                    label: "TE UBICABAS EN (DESCRIPCIÓN DEL LUGAR)"),
+                    label: "TE UBICABAS EN (DESCRIPCIÓN DEL LUGAR)",
+                    defaultText: "Batalla naval de Curzola",), //Sólo por motivos de pruebas defaultText
                 SizedBox(height: 100.0),
                 SubTitlesAgs(texto: "NARRATIVA"),
                 SizedBox(height: 150.0),
                 TextBox(
                     controller: controllerNarrativaDenuncia,
-                    label: "CUENTANOS LO QUE SUCEDIÓ"),
+                    label: "CUENTANOS LO QUE SUCEDIÓ",
+                    defaultText: "Los genoveses y los venecianos comenzaron a asesinarse entre ellos con armas punzo cortantes",), //Sólo por motivos de pruebas defaultText
                 SizedBox(height: 100.0),
                 SubTitlesAgs(texto: "PRUEBAS"),
                 SizedBox(height: 100.0),
@@ -182,7 +187,8 @@ class _Denuncia4State extends State<Denuncia4> {
                 SizedBox(height: 100.0),
                 TextBox(
                     controller: controllerTestigos,
-                    label: "INGRESA LOS NOMBRES DE LOS TESTIGOS"),
+                    label: "INGRESA LOS NOMBRES DE LOS TESTIGOS",
+                    defaultText: "Almirante Andrea Dandolo",), //Sólo por motivos de pruebas defaultText
                 Row(
                   children: [
                     Checkbox(
@@ -200,11 +206,13 @@ class _Denuncia4State extends State<Denuncia4> {
                   controller: controllerTelefonoDenunciante,
                   label: "INGRESA TU TELEFONO",
                   onlyText: !_isChecked,
+                  defaultText: "449-111-0000", //Sólo por motivos de pruebas defaultText
                 ),
                 TextBox(
                   controller: controllerCorreoDenunciante,
                   label: "INGRESA TU CORREO",
                   onlyText: !_isChecked,
+                  defaultText: "marco.polo@hotmail.mx", //Sólo por motivos de pruebas defaultText
                 ),
                 SubTitlesAgs(texto: "FIRMA"),
                 Card(

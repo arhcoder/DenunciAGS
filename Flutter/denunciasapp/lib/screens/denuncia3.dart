@@ -219,39 +219,39 @@ class _Denuncia3 extends State<Denuncia3> {
                   ),
                   SubTitlesAgs(texto: "DATOS DEL DENUNCIADO"),
                   SizedBox(height: 50),
-                  TextBox(controller: controllerNombre2, label: "NOMBRE"),
+                  TextBox(controller: controllerNombre2, label: "NOMBRE", defaultText: "Marco Polo",), //Sólo por motivos de pruebas defaultText
                   SizedBox(height: 50),
-                  SubTitlesAgs(texto: "DOMICILIO DEL DENUNCIADO (OPCIONAL)"),
                   SizedBox(
                     height: 50,
                   ),
-                  TextBox(controller: controllerSexo2, label: "SEXO"),
+                  TextBox(controller: controllerSexo2, label: "SEXO", defaultText: "Hombre",), //Sólo por motivos de pruebas defaultText
+                  SubTitlesAgs(texto: "DOMICILIO DEL DENUNCIADO (OPCIONAL)"),
                   SizedBox(
                     height: 30,
                   ),
-                  TextBox(controller: controllerCalle2, label: "CALLE"),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  TextBox(
-                      controller: controllerNoInterior2, label: "NO. INTERIOR"),
+                  TextBox(controller: controllerCalle2, label: "CALLE", defaultText: "Venecia Antigua",), //Sólo por motivos de pruebas defaultText
                   SizedBox(
                     height: 30,
                   ),
                   TextBox(
-                      controller: controllerNoExterior2, label: "NO. EXTERIOR"),
+                      controller: controllerNoInterior2, label: "NO. INTERIOR", defaultText: "1254",), //Sólo por motivos de pruebas defaultText
                   SizedBox(
                     height: 30,
                   ),
-                  TextBox(controller: controllerColonia2, label: "COLONIA"),
+                  TextBox(
+                      controller: controllerNoExterior2, label: "NO. EXTERIOR", defaultText: "1324",), //Sólo por motivos de pruebas defaultText
                   SizedBox(
                     height: 30,
                   ),
-                  TextBox(controller: controllerMunicipio2, label: "MUNICIPIO"),
+                  TextBox(controller: controllerColonia2, label: "COLONIA", defaultText: "Republica de Venecia",), //Sólo por motivos de pruebas defaultText
                   SizedBox(
                     height: 30,
                   ),
-                  TextBox(controller: controllerEstado2, label: "ESTADO"),
+                  TextBox(controller: controllerMunicipio2, label: "MUNICIPIO", defaultText: "Dalmacia",), //Sólo por motivos de pruebas defaultText
+                  SizedBox(
+                    height: 30,
+                  ),
+                  TextBox(controller: controllerEstado2, label: "ESTADO", defaultText: "Republica de Marítima",), //Sólo por motivos de pruebas defaultText
                   SizedBox(
                     height: 40,
                   ),
