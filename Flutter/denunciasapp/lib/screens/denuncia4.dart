@@ -95,157 +95,165 @@ class _Denuncia4State extends State<Denuncia4> {
           onPressed: () => Navigator.of(context).pop(),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: EdgeInsets.all(20.0),
-          child: Column(
-            children: <Widget>[
-              SubTitlesAgs(texto: "DATOS DE LA DENUNCIA"),
-              SizedBox(
-                height: 20,
-              ),
-              DropdownButton<String>(
-                hint: Text('Selecciona una opción'),
-                value: _selectedOption1,
-                onChanged: (String? newValue) {
-                  setState(() {
-                    _selectedOption1 = newValue;
-                    _options2 = _optionsMap[newValue!]!;
-                    _selectedOption2 = null;
-                  });
-                },
-                items: _optionsMap.keys
-                    .map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
-              ),
-              SizedBox(height: 20.0),
-              DropdownButton<String>(
-                hint: Text('SELECCIONA UNA OPCIÓN'),
-                value: _selectedOption2,
-                onChanged: (String? newValue) {
-                  setState(() {
-                    _selectedOption2 = newValue;
-                  });
-                },
-                items: _options2.map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
-              ),
-              SizedBox(height: 20.0),
-              TextBox(
-                  controller: controllerFecha, label: "FECHA DE LOS HECHOS"),
-              SizedBox(height: 20.0),
-              TextBox(
-                  controller: controllerHora,
-                  label: "HORA DE LOS HECHOS (OPCIONAL)"),
-              SizedBox(height: 50.0),
-              SubTitlesAgs(texto: "LUGAR DONDE SUCEDIERON LOS HECHOS"),
-              SizedBox(height: 50.0),
-              TextBox(controller: controllerCalleHechos, label: "CALLE"),
-              SizedBox(height: 20.0),
-              TextBox(
-                  controller: controllerEntreCalleHechos1,
-                  label: "ENTRE CALLE 1"),
-              SizedBox(height: 20.0),
-              TextBox(
-                  controller: controllerEntreCalleHechos2,
-                  label: "ENTRE CALLE 2"),
-              SizedBox(height: 20.0),
-              TextBox(
-                  controller: controllerUbicacionActualHechos,
-                  label: "TE UBICABAS EN (DESCRIPCIÓN DEL LUGAR)"),
-              SizedBox(height: 100.0),
-              SubTitlesAgs(texto: "NARRATIVA"),
-              SizedBox(height: 150.0),
-              TextBox(
-                  controller: controllerNarrativaDenuncia,
-                  label: "CUENTANOS LO QUE SUCEDIÓ"),
-              SizedBox(height: 100.0),
-              SubTitlesAgs(texto: "PRUEBAS"),
-              SizedBox(height: 100.0),
-              SubTitlesAgs(texto: "TESTIGOS"),
-              SizedBox(height: 100.0),
-              TextBox(
-                  controller: controllerTestigos,
-                  label: "INGRESA LOS NOMBRES DE LOS TESTIGOS"),
-              Row(
-                children: [
-                  Checkbox(
-                    value: _isChecked,
-                    onChanged: (value) {
-                      setState(() {
-                        _isChecked = value!;
-                      });
-                    },
-                  ),
-                  Text("DENUNCIA NO ANONIMA"),
-                ],
-              ),
-              TextBox(
-                controller: controllerTelefonoDenunciante,
-                label: "INGRESA TU TELEFONO",
-                onlyText: !_isChecked,
-              ),
-              TextBox(
-                controller: controllerCorreoDenunciante,
-                label: "INGRESA TU CORREO",
-                onlyText: !_isChecked,
-              ),
-              SubTitlesAgs(texto: "FIRMA"),
-              Card(
-                elevation: 4.0,
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 200.0,
-                  child: Signature(
-                      key: signatureKey,
-                      cardSize: Size(MediaQuery.of(context).size.width, 200.0)),
+      body: Center(
+        heightFactor: 1,
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 20, right: 30),
+            child: Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 20,
                 ),
-              ),
-              ElevatedButton(
-                onPressed: () async {
-                  if (_selectedOption1 != null &&
-                      controllerFecha.text != "" &&
-                      controllerHora.text != "" &&
-                      controllerCalleHechos.text != "" &&
-                      controllerUbicacionActualHechos.text != "" &&
-                      controllerTestigos != "") {
-                    ui.Image? image =
-                        await signatureKey.currentState?.getImage();
-                    print("Sí se pudo");
-                    widget.reporte.setSecondDatas(
-                        _selectedOption1,
-                        _selectedOption2,
-                        controllerFecha.text,
-                        controllerHora.text,
-                        controllerCalleHechos.text,
-                        controllerEntreCalleHechos1.text,
-                        controllerEntreCalleHechos2.text,
-                        controllerUbicacionActualHechos.text,
-                        controllerNarrativaDenuncia.text,
-                        controllerTestigos.text,
-                        _isChecked,
-                        controllerTelefonoDenunciante.text,
-                        controllerCorreoDenunciante.text,
-                        image);
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Denuncia5(),
-                      ),
+                SubTitlesAgs(texto: "DATOS DE LA DENUNCIA"),
+                SizedBox(
+                  height: 40,
+                ),
+                DropdownButton<String>(
+                  hint: Text('Selecciona una opción'),
+                  value: _selectedOption1,
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      _selectedOption1 = newValue;
+                      _options2 = _optionsMap[newValue!]!;
+                      _selectedOption2 = null;
+                    });
+                  },
+                  items: _optionsMap.keys
+                      .map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
                     );
-                  }
-                },
-                child: Text('CONTINUAR'),
-              ),
-            ],
+                  }).toList(),
+                ),
+                SizedBox(height: 20.0),
+                DropdownButton<String>(
+                  hint: Text('SELECCIONA UNA OPCIÓN'),
+                  value: _selectedOption2,
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      _selectedOption2 = newValue;
+                    });
+                  },
+                  items:
+                      _options2.map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                ),
+                SizedBox(height: 20.0),
+                TextBox(
+                    controller: controllerFecha, label: "FECHA DE LOS HECHOS"),
+                SizedBox(height: 20.0),
+                TextBox(
+                    controller: controllerHora,
+                    label: "HORA DE LOS HECHOS (OPCIONAL)"),
+                SizedBox(height: 50.0),
+                SubTitlesAgs(texto: "LUGAR DONDE SUCEDIERON LOS HECHOS"),
+                SizedBox(height: 50.0),
+                TextBox(controller: controllerCalleHechos, label: "CALLE"),
+                SizedBox(height: 20.0),
+                TextBox(
+                    controller: controllerEntreCalleHechos1,
+                    label: "ENTRE CALLE 1"),
+                SizedBox(height: 20.0),
+                TextBox(
+                    controller: controllerEntreCalleHechos2,
+                    label: "ENTRE CALLE 2"),
+                SizedBox(height: 20.0),
+                TextBox(
+                    controller: controllerUbicacionActualHechos,
+                    label: "TE UBICABAS EN (DESCRIPCIÓN DEL LUGAR)"),
+                SizedBox(height: 100.0),
+                SubTitlesAgs(texto: "NARRATIVA"),
+                SizedBox(height: 150.0),
+                TextBox(
+                    controller: controllerNarrativaDenuncia,
+                    label: "CUENTANOS LO QUE SUCEDIÓ"),
+                SizedBox(height: 100.0),
+                SubTitlesAgs(texto: "PRUEBAS"),
+                SizedBox(height: 100.0),
+                SubTitlesAgs(texto: "TESTIGOS"),
+                SizedBox(height: 100.0),
+                TextBox(
+                    controller: controllerTestigos,
+                    label: "INGRESA LOS NOMBRES DE LOS TESTIGOS"),
+                Row(
+                  children: [
+                    Checkbox(
+                      value: _isChecked,
+                      onChanged: (value) {
+                        setState(() {
+                          _isChecked = value!;
+                        });
+                      },
+                    ),
+                    Text("DENUNCIA NO ANONIMA"),
+                  ],
+                ),
+                TextBox(
+                  controller: controllerTelefonoDenunciante,
+                  label: "INGRESA TU TELEFONO",
+                  onlyText: !_isChecked,
+                ),
+                TextBox(
+                  controller: controllerCorreoDenunciante,
+                  label: "INGRESA TU CORREO",
+                  onlyText: !_isChecked,
+                ),
+                SubTitlesAgs(texto: "FIRMA"),
+                Card(
+                  elevation: 4.0,
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 200.0,
+                    child: Signature(
+                        key: signatureKey,
+                        cardSize:
+                            Size(MediaQuery.of(context).size.width, 200.0)),
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () async {
+                    if (_selectedOption1 != null &&
+                        controllerFecha.text != "" &&
+                        controllerHora.text != "" &&
+                        controllerCalleHechos.text != "" &&
+                        controllerUbicacionActualHechos.text != "" &&
+                        controllerTestigos != "") {
+                      ui.Image? image =
+                          await signatureKey.currentState?.getImage();
+                      print("Sí se pudo");
+                      widget.reporte.setSecondDatas(
+                          _selectedOption1,
+                          _selectedOption2,
+                          controllerFecha.text,
+                          controllerHora.text,
+                          controllerCalleHechos.text,
+                          controllerEntreCalleHechos1.text,
+                          controllerEntreCalleHechos2.text,
+                          controllerUbicacionActualHechos.text,
+                          controllerNarrativaDenuncia.text,
+                          controllerTestigos.text,
+                          _isChecked,
+                          controllerTelefonoDenunciante.text,
+                          controllerCorreoDenunciante.text,
+                          image);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Denuncia5(),
+                        ),
+                      );
+                    }
+                  },
+                  child: Text('CONTINUAR'),
+                ),
+              ],
+            ),
           ),
         ),
       ),

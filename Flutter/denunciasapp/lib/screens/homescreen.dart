@@ -31,12 +31,19 @@ class HomeScreen extends StatelessWidget {
               SubTitlesAgs(texto: "REALIZAR DENUNCIA"),
               SizedBox(height: 50),
               Container(
+                height: 50,
+                width: 150,
                 child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(elevation: 20),
                     onPressed: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => Denuncia2()));
                     },
-                    child: Text("INICIAR")),
+                    child: Text(
+                      "INICIAR",
+                      style:
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                    )),
               ),
               //SECCIÓN DE SEGUIMIENTO DE DENUNCIA
               SizedBox(height: 50),

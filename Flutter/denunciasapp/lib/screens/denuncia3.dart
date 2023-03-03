@@ -132,126 +132,185 @@ class _Denuncia3 extends State<Denuncia3> {
             onPressed: () => Navigator.of(context).pop(),
           ),
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(20),
-          child: ListView(
-            children: [
-              SubTitlesAgs(texto: "DATOS DEL DENUNCIANTE"),
-              SizedBox(
-                height: 20,
-              ),
-              TextBox(
-                controller: controllerCurp1,
-                label: "CURP",
-                defaultText: _data['curp'],
-                onlyText: true,
-              ),
-              TextBox(
-                controller: controllerNombre1,
-                label: "NOMBRE",
-                defaultText:
-                    "${_data['name']['names']} ${_data['name']['first_last_name']} ${_data['name']['second_last_name']} ",
-              ),
-              TextBox(
-                controller: controllerSexo1,
-                label: "SEXO (H,M)",
-                defaultText: _data['sex'],
-              ),
-              TextBox(
-                controller: controllerCalle1,
-                label: "CALLE",
-                defaultText: _data['domicile']['street'],
-              ),
-              TextBox(
-                controller: controllerNoInterior1,
-                label: "NO. INTERIOR",
-                defaultText: _data['domicile']['internal_number'],
-              ),
-              TextBox(
-                controller: controllerNoExterior1,
-                label: "NO. EXTERIOR",
-                defaultText: _data['domicile']['exterior_number'],
-              ),
-              TextBox(
-                controller: controllerColonia1,
-                label: "COLONIA",
-                defaultText: _data['domicile']['cologne'],
-              ),
-              TextBox(
-                controller: controllerMunicipio1,
-                label: "MUNICIPIO",
-                defaultText: _data["domicile"]["municipality"],
-              ),
-              TextBox(
-                controller: controllerEstado1,
-                label: "ESTADO",
-                defaultText: _data['federative_entity'],
-              ),
-              SizedBox(
-                height: 50,
-              ),
-              SubTitlesAgs(texto: "DATOS DEL DENUNCIADO"),
-              SizedBox(height: 50),
-              TextBox(controller: controllerNombre2, label: "NOMBRE"),
-              SizedBox(height: 50),
-              SubTitlesAgs(texto: "DOMICILIO DEL DENUNCIADO (OPCIONAL)"),
-              SizedBox(
-                height: 50,
-              ),
-              TextBox(controller: controllerSexo2, label: "SEXO"),
-              TextBox(controller: controllerCalle2, label: "CALLE"),
-              TextBox(controller: controllerNoInterior2, label: "NO. INTERIOR"),
-              TextBox(controller: controllerNoExterior2, label: "NO. EXTERIOR"),
-              TextBox(controller: controllerColonia2, label: "COLONIA"),
-              TextBox(controller: controllerMunicipio2, label: "MUNICIPIO"),
-              TextBox(controller: controllerEstado2, label: "ESTADO"),
-              Container(
-                height: 80,
-                child: ElevatedButton(
-                    onPressed: () {
-                      if (controllerCurp1.text.isNotEmpty &&
-                          controllerNombre1.text.isNotEmpty &&
-                          controllerSexo1.text.isNotEmpty &&
-                          controllerCalle1.text.isNotEmpty &&
-                          controllerNoInterior1.text.isNotEmpty &&
-                          controllerNoExterior1.text.isNotEmpty &&
-                          controllerColonia1.text.isNotEmpty &&
-                          controllerMunicipio1.text.isNotEmpty &&
-                          controllerEstado1.text.isNotEmpty &&
-                          controllerNombre2.text.isNotEmpty) {
-                        Denuncia report = Denuncia(
-                            curp1: controllerNombre1.text,
-                            nombre1: controllerNombre1.text,
-                            sexo1: controllerSexo1.text,
-                            calle1: controllerCalle1.text,
-                            nointerior1: controllerNoInterior1.text,
-                            noexterior1: controllerNoExterior1.text,
-                            colonia1: controllerColonia1.text,
-                            municipio1: controllerMunicipio1.text,
-                            estado1: controllerEstado1.text,
-                            //DENUNCIADO
-                            nombre2: controllerAnonima.text,
-                            sexo2: controllerSexo2.text,
-                            calle2: controllerCalle2.text,
-                            nointerior2: controllerNoInterior2.text,
-                            noexterior2: controllerNoExterior2.text,
-                            colonia2: controllerColonia2.text,
-                            municipio2: controllerMunicipio2.text,
-                            estado2: controllerEstado2.text,
-                            anonima: false);
+        body: Center(
+          heightFactor: 1,
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 30,
+                  ),
+                  SubTitlesAgs(texto: "DATOS DEL DENUNCIANTE"),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  TextBox(
+                    controller: controllerCurp1,
+                    label: "CURP",
+                    defaultText: _data['curp'],
+                    onlyText: true,
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  TextBox(
+                    controller: controllerNombre1,
+                    label: "NOMBRE",
+                    defaultText:
+                        "${_data['name']['names']} ${_data['name']['first_last_name']} ${_data['name']['second_last_name']} ",
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  TextBox(
+                    controller: controllerSexo1,
+                    label: "SEXO (H,M)",
+                    defaultText: _data['sex'],
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  TextBox(
+                    controller: controllerCalle1,
+                    label: "CALLE",
+                    defaultText: _data['domicile']['street'],
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  TextBox(
+                    controller: controllerNoInterior1,
+                    label: "NO. INTERIOR",
+                    defaultText: _data['domicile']['internal_number'],
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  TextBox(
+                    controller: controllerNoExterior1,
+                    label: "NO. EXTERIOR",
+                    defaultText: _data['domicile']['exterior_number'],
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  TextBox(
+                    controller: controllerColonia1,
+                    label: "COLONIA",
+                    defaultText: _data['domicile']['cologne'],
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  TextBox(
+                    controller: controllerMunicipio1,
+                    label: "MUNICIPIO",
+                    defaultText: _data["domicile"]["municipality"],
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  TextBox(
+                    controller: controllerEstado1,
+                    label: "ESTADO",
+                    defaultText: _data['federative_entity'],
+                  ),
+                  SizedBox(
+                    height: 50,
+                  ),
+                  SubTitlesAgs(texto: "DATOS DEL DENUNCIADO"),
+                  SizedBox(height: 50),
+                  TextBox(controller: controllerNombre2, label: "NOMBRE"),
+                  SizedBox(height: 50),
+                  SubTitlesAgs(texto: "DOMICILIO DEL DENUNCIADO (OPCIONAL)"),
+                  SizedBox(
+                    height: 50,
+                  ),
+                  TextBox(controller: controllerSexo2, label: "SEXO"),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  TextBox(controller: controllerCalle2, label: "CALLE"),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  TextBox(
+                      controller: controllerNoInterior2, label: "NO. INTERIOR"),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  TextBox(
+                      controller: controllerNoExterior2, label: "NO. EXTERIOR"),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  TextBox(controller: controllerColonia2, label: "COLONIA"),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  TextBox(controller: controllerMunicipio2, label: "MUNICIPIO"),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  TextBox(controller: controllerEstado2, label: "ESTADO"),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  Container(
+                    height: 80,
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(elevation: 20),
+                        onPressed: () {
+                          if (controllerCurp1.text.isNotEmpty &&
+                              controllerNombre1.text.isNotEmpty &&
+                              controllerSexo1.text.isNotEmpty &&
+                              controllerCalle1.text.isNotEmpty &&
+                              controllerNoInterior1.text.isNotEmpty &&
+                              controllerNoExterior1.text.isNotEmpty &&
+                              controllerColonia1.text.isNotEmpty &&
+                              controllerMunicipio1.text.isNotEmpty &&
+                              controllerEstado1.text.isNotEmpty &&
+                              controllerNombre2.text.isNotEmpty) {
+                            Denuncia report = Denuncia(
+                                curp1: controllerNombre1.text,
+                                nombre1: controllerNombre1.text,
+                                sexo1: controllerSexo1.text,
+                                calle1: controllerCalle1.text,
+                                nointerior1: controllerNoInterior1.text,
+                                noexterior1: controllerNoExterior1.text,
+                                colonia1: controllerColonia1.text,
+                                municipio1: controllerMunicipio1.text,
+                                estado1: controllerEstado1.text,
+                                //DENUNCIADO
+                                nombre2: controllerAnonima.text,
+                                sexo2: controllerSexo2.text,
+                                calle2: controllerCalle2.text,
+                                nointerior2: controllerNoInterior2.text,
+                                noexterior2: controllerNoExterior2.text,
+                                colonia2: controllerColonia2.text,
+                                municipio2: controllerMunicipio2.text,
+                                estado2: controllerEstado2.text,
+                                anonima: false);
 
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    Denuncia4(reporte: report)));
-                      } else {
-                        print("Lo intenté");
-                      }
-                    },
-                    child: const Text("CONTINUAR")),
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        Denuncia4(reporte: report)));
+                          } else {
+                            print("Lo intenté");
+                          }
+                        },
+                        child: const Text("CONTINUAR")),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ));
   }

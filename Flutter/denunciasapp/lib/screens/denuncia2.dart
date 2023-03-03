@@ -66,7 +66,7 @@ class _Denuncia2 extends State<Denuncia2> {
                         onPressed: () {
                           _pickImage(1);
                         },
-                        child: _picker1
+                        child: !_picker1
                             ? Icon(
                                 Icons.upload,
                                 size: 180,
@@ -93,7 +93,7 @@ class _Denuncia2 extends State<Denuncia2> {
                         onPressed: () {
                           _pickImage(2);
                         },
-                        child: _picker2
+                        child: !_picker2
                             ? Icon(
                                 Icons.upload,
                                 size: 180,
@@ -123,6 +123,9 @@ class _Denuncia2 extends State<Denuncia2> {
                     child: const Text("CONTINUAR"),
                   ),
                 ),
+                SizedBox(
+                  height: 30,
+                ),
               ],
             ),
           ),
@@ -134,25 +137,35 @@ class _Denuncia2 extends State<Denuncia2> {
   //Recuperar imagenes 0709
   Future<void> _pickImage(int picker) async {
     final ImagePicker _picker = ImagePicker();
-      XFile? image = await _picker.pickImage(source: ImageSource.gallery);
-      if(!kIsWeb) {
-        XFile? image = await _picker.pickImage(source: ImageSource.camera);
+    XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    if (!kIsWeb && image == null) {
+      XFile? image = await _picker.pickImage(source: ImageSource.camera);
+    }
+    if (image != null) {
+      var f = await image.readAsBytes();
+      setState(() {
+        switch (picker) {
+          case 1:
+            webImageF = f;
+            _picker1 = true;
+            break;
+          case 2:
+            webImageT = f;
+            _picker2 = true;
+            break;
+        }
+      });
+    } else {
+      switch (picker) {
+        case 1:
+          _picker1 = false;
+          break;
+        case 2:
+          _picker2 = false;
+          break;
       }
-      if (image != null) {
-        var f = await image.readAsBytes();
-        setState(() {
-          switch(picker) {
-            case 1: webImageF = f; _picker1 = true; break;
-            case 2: webImageT = f; _picker2 = true; break;
-          }
-        });
-      } else {
-        switch(picker) {
-            case 1: _picker1 = false; break;
-            case 2: _picker2 = false; break;
-          }
-        print("No hay imagen seleccionada");
-      }
+      print("No hay imagen seleccionada");
+    }
   }
 
   //Mandar imagenes
@@ -164,11 +177,11 @@ class _Denuncia2 extends State<Denuncia2> {
     String imagenCodificadaF = base64Encode(webImageF);
     String imagenCodificadaT = base64Encode(webImageT);
     // Define el cuerpo de la petición POST
-    Map<String, String> cuerpo = {
+    Map<String, dynamic> cuerpo = {
       'imagenF': imagenCodificadaF,
       'imagenT': imagenCodificadaT
     };
-    
+
     respuesta = await http.post(Uri.parse(url), body: json.encode(cuerpo));
 
     // Verifica el código de estado de la respuesta
